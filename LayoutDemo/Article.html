@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+    
+    <body>
+        
+        <p>Swift 3 beta was just released as part of Xcode 8 beta and includes numerous enhancements, many contributed by the open source community. The primary goal of Swift 3 is to implement the last major source changes necessary to  allow Swift to coalesce as a consistent language throughout, resulting in a much more stable syntax for future releases.</p>
+        
+        <p>Swift syntax and API renaming changes in Swift 3 make the language feel more natural, and provide an even more Swift-y experience when calling Cocoa frameworks. Popular frameworks Core Graphics and Grand Central Dispatch have new, much cleaner interfaces in Swift. This release also improves build performance, and includes many small fixes that will make it more enjoyable to use every day.</p>
+        
+        <p><a href="http://developer.apple.com/download/">Xcode 8 beta</a> includes a migrator for Swift files and playgrounds to help you move your existing code to Swift 3.</p><h2>Swift 2.3</h2><p>In addition to Swift 3, Xcode 8 supports development with Swift 2.3, a minor update to the Swift 2.2 language built to work with the new SDKs for macOS Sierra, iOS 10, tvOS 10, and watchOS 3. This is intended to allow developers to immediately move to these latest SDKs, even for projects that may be late in development with Swift 2.2 and not yet ready to move to Swift 3. Xcode 8 can migrate your code to the new Swift 2.3 changes, primarily related to nullability clarity that's been added to the new SDKs. For instance:</p><p>Swift 2.2 Core Image code without the new SDK nullability definition:</p>
+        
+        <pre><code><span class="key">let</span> image = <span class="title">CIImage</span>(MTLTexture: texture, options: options)</code></pre>
+        
+        <p>Swift 2.3 code makes the failable initializer more clear:</p>
+        
+        <pre><code><span class="key">if let</span> image = <span class="title">CIImage</span>(MTLTexture: texture, options: options)</code></pre><p>Or:</p><pre><code><span class="key">let</span> image = <span class="title">CIImage</span>(MTLTexture: texture, options: options)!</code></pre>
+        
+        <p>Swift 3 is the primary development language supported within Xcode 8 so there are a couple notes to consider if you chose to continue using Swift 2.3. First, Swift 2.3 and Swift 3 are not binary compatible so your app's entire code base needs to pick one version of Swift. Both versions are fully supported by the compiler, SDKs, and debugger, but other features of the IDE may not work with Swift 2.3. For instance, Playgrounds in Xcode only work with Swift 3, and notably the Swift Playgrounds app for iPad also uses Swift 3. Xcode project templates all use Swift 3, and all documentation is presented in a format appropriate for Swift 3.</p>
+        
+        <p>When Xcode 8 is GM later this year, you will be able to submit your apps to the App Store written in either Swift 3.0 or 2.3. The changes in Swift 3 represent the future of the Swift language, and we strongly encourage you to budget time to migrate your Swift code to version 3. Even if you first migrate to Swift 2.3 in the interim, you can later run the Xcode 8 migrator to move from Swift 2.3 to Swift 3.</p>
+        
+    </body>
+    
+</html>
