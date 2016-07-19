@@ -8,12 +8,22 @@
 
 import UIKit
 
-/// `Layout` for a background `Layout` that moves with a parallax scroll effect behind another `Layout`.
+/**
+ 
+ `Layout` for a background `Layout` that moves with a parallax scroll effect behind another `Layout`. 
+ 
+ This is required to be an NSObject over a struct as it uses KVO to implement the parallax effect on the background as the user scrolls `scrollView`.
+ 
+ */
 public final class ParallaxScrollLayout: NSObject, Layout {
     
+    /// The `Layout` that is moved in response to `scrollView.contentOffset` to give the parallax effect. Sits behind `foregroundLayout` in the hierarchy.
     public let backgroundLayout:Layout
+    
+    /// The `Layout` that acts as the content in the foreground of the parallax effect. Sits above `backgroundLayout` in the hierarchy.
     public let foregroundLayout:Layout
     
+    /// The scroll view that performs the scroll, in response to which `backgroundLayout`'s position is adjusted to give the parallax effect.
     public let scrollView = UIScrollView()
     
     /// Internal variable for the constraint connecting the background and foreground. The constant is adjusted to implement the parallax scroll.
@@ -22,14 +32,17 @@ public final class ParallaxScrollLayout: NSObject, Layout {
     /// Internal variable to give a constant space between the top of the foreground and top of the scroll view content. As the background `Layout` moves, the content size of the scroll view permanently changes. This makes the scrolling stuttered and prevents the view from bouncing.
     let backgroundSpaceGuide: UILayoutGuide
     
-    public var bouncesHeader: Bool = false {
+    /// Flag for whether or not `backgroundLayout` should be pulled down with `foregroundLayout` or remain at the top of `scrollView`. Default value is `false`.
+    public var bouncesBackground: Bool = false {
         didSet {
-            if bouncesHeader != oldValue {
+            if bouncesBackground != oldValue {
+                // recalculate the offset
                 scrollViewDidScroll(scrollView)
             }
         }
     }
     
+    /// The rate at which `backgroundLayout`'s position is adjusted compared to `scrollView.contentOffset`. Default value is 0.5.
     public var scrollRate: CGFloat = 0.5 {
         didSet {
             if scrollRate != oldValue {
@@ -39,6 +52,7 @@ public final class ParallaxScrollLayout: NSObject, Layout {
         }
     }
     
+    /// Default initialiser setting the two `Layout` properties. Adds `self` as an observer to the `contentOffset` of `scrollView`. This allows other objects to be the UIScrollViewDelegate.
     public init(backgroundLayout: Layout, foregroundLayout: Layout) {
         
         self.backgroundLayout = backgroundLayout
@@ -53,7 +67,7 @@ public final class ParallaxScrollLayout: NSObject, Layout {
         
         scrollView.alwaysBounceVertical = true
         
-        // constrain the scroll view contents
+        // create the internal constraints, some of which are properties so must be done before super.init
         scrollView.widthAnchor.constraintEqualToAnchor(foregroundLayout.boundary.widthAnchor).active = true
         
         backgroundSpaceGuide.heightAnchor.constraintEqualToAnchor(backgroundLayout.boundary.heightAnchor)
@@ -68,14 +82,16 @@ public final class ParallaxScrollLayout: NSObject, Layout {
         
         let bLeading = backgroundLayout.boundary.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor)
         let bTrailing = backgroundLayout.boundary.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor)
-
+        
         connectingConstraint = backgroundLayout.boundary.bottomAnchor.constraintEqualToAnchor(foregroundLayout.boundary.topAnchor)
         
         let fLeading = foregroundLayout.boundary.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor)
         let fTrailing = foregroundLayout.boundary.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor)
         let fBottom = foregroundLayout.boundary.bottomAnchor.constraintEqualToAnchor(scrollView.bottomAnchor)
         
-        NSLayoutConstraint.activateConstraints([gTop, gBottom, gLeading, gTrailing, gHeight, bLeading, bTrailing, connectingConstraint, fLeading, fTrailing, fBottom])
+        let internalConstraints = [gTop, gBottom, gLeading, gTrailing, gHeight, bLeading, bTrailing, connectingConstraint, fLeading, fTrailing, fBottom].flatMap { $0 }
+        
+        NSLayoutConstraint.activateConstraints(internalConstraints)
         
         super.init()
         
@@ -106,25 +122,20 @@ public final class ParallaxScrollLayout: NSObject, Layout {
         let offset = scrollView.contentOffset.y + scrollView.contentInset.top
         let parallax = floor(scrollRate * offset)
         
-        // TODO: fix bounce at bottom
-//        let maximumParallax = ...
-        let foregroundTop = bouncesHeader ? max(0, parallax) : parallax
+        let foregroundTop: CGFloat
+        if bouncesBackground {
+            foregroundTop = max(0, parallax)
+        } else {
+            if offset > 0 {
+                foregroundTop = parallax
+            } else {
+                foregroundTop = offset
+            }
+        }
         
         if connectingConstraint.constant != foregroundTop {
             connectingConstraint.constant = foregroundTop
         }
-        
-//        if let view = backgroundLayout as? UIView
-//            where !bouncesHeader {
-//            
-//            let bouncing = scrollView.contentOffset.y < -scrollView.contentInset.top
-//            let bounceOffset = scrollView.contentOffset.y + scrollView.contentInset.top
-//            let transform = bouncing ? CGAffineTransformMakeTranslation(0, bounceOffset) : CGAffineTransformIdentity
-//            
-//            if !CGAffineTransformEqualToTransform(view.transform, transform) {
-//                view.transform = transform
-//            }
-//        }
     }
     
     // MARK: Layout Conformance
