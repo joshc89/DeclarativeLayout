@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50145411D465845003EC7DD /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50145401D465845003EC7DD /* CollectionModel.swift */; };
+		A50145431D4659AC003EC7DD /* Array+CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50145421D4659AC003EC7DD /* Array+CollectionModel.swift */; };
+		A50145451D465BDB003EC7DD /* NSFetchedResultsController+CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50145441D465BDB003EC7DD /* NSFetchedResultsController+CollectionModel.swift */; };
+		A50145471D465E9C003EC7DD /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50145461D465E9C003EC7DD /* TableDataSource.swift */; };
 		A52DF94D1D4613EB00ED8DE9 /* DLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52DF94C1D4613EB00ED8DE9 /* DLViewController.swift */; };
 		A539F8571D3B6B430069A2B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539F8561D3B6B430069A2B6 /* AppDelegate.swift */; };
 		A539F8591D3B6B430069A2B6 /* TitledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539F8581D3B6B430069A2B6 /* TitledViewController.swift */; };
@@ -69,6 +73,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A50145401D465845003EC7DD /* CollectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionModel.swift; path = Protocols/CollectionModel.swift; sourceTree = "<group>"; };
+		A50145421D4659AC003EC7DD /* Array+CollectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+CollectionModel.swift"; path = "Extensions/Array+CollectionModel.swift"; sourceTree = "<group>"; };
+		A50145441D465BDB003EC7DD /* NSFetchedResultsController+CollectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSFetchedResultsController+CollectionModel.swift"; path = "Extensions/NSFetchedResultsController+CollectionModel.swift"; sourceTree = "<group>"; };
+		A50145461D465E9C003EC7DD /* TableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableDataSource.swift; path = Collections/TableDataSource.swift; sourceTree = "<group>"; };
 		A52DF94C1D4613EB00ED8DE9 /* DLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DLViewController.swift; path = "Example Layouts/DLViewController.swift"; sourceTree = "<group>"; };
 		A539F8541D3B6B430069A2B6 /* LayoutDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A539F8561D3B6B430069A2B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +137,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A501453F1D46582C003EC7DD /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				A50145461D465E9C003EC7DD /* TableDataSource.swift */,
+			);
+			name = Collections;
+			sourceTree = "<group>";
+		};
 		A539F8551D3B6B430069A2B6 /* LayoutDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				A59A05891D39130D00E6B652 /* DeclarativeLayout.h */,
+				A501453F1D46582C003EC7DD /* Collections */,
 				A59A05CA1D39144B00E6B652 /* Example Layouts */,
 				A59A05C91D39144100E6B652 /* Extensions */,
 				A59A05C61D39142000E6B652 /* Protocols */,
@@ -193,6 +210,7 @@
 			children = (
 				A59A05C41D39141C00E6B652 /* AnchoredObject.swift */,
 				A59A05C71D39143200E6B652 /* Layout.swift */,
+				A50145401D465845003EC7DD /* CollectionModel.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -203,6 +221,8 @@
 				A59A05CF1D3914AF00E6B652 /* UIStackView+DeclarativeLayout.swift */,
 				A59A05CB1D39148400E6B652 /* UIView+DeclarativeLayout.swift */,
 				A59A05CD1D3914A000E6B652 /* UILayoutGuide+DeclarativeLayout.swift */,
+				A50145421D4659AC003EC7DD /* Array+CollectionModel.swift */,
+				A50145441D465BDB003EC7DD /* NSFetchedResultsController+CollectionModel.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -381,7 +401,10 @@
 				A59A05D01D3914AF00E6B652 /* UIStackView+DeclarativeLayout.swift in Sources */,
 				A59A05C51D39141C00E6B652 /* AnchoredObject.swift in Sources */,
 				A59A05D21D3914D700E6B652 /* TitledLayout.swift in Sources */,
+				A50145411D465845003EC7DD /* CollectionModel.swift in Sources */,
 				A52DF94D1D4613EB00ED8DE9 /* DLViewController.swift in Sources */,
+				A50145471D465E9C003EC7DD /* TableDataSource.swift in Sources */,
+				A50145431D4659AC003EC7DD /* Array+CollectionModel.swift in Sources */,
 				A59E118F1D3E056F00EB725B /* DetailPageLayout.swift in Sources */,
 				A59A05CC1D39148400E6B652 /* UIView+DeclarativeLayout.swift in Sources */,
 				A59A05D61D39151000E6B652 /* ErrorLayout.swift in Sources */,
@@ -389,6 +412,7 @@
 				A59A05C81D39143200E6B652 /* Layout.swift in Sources */,
 				A59A05DA1D39377800E6B652 /* ParallaxScrollLayout.swift in Sources */,
 				A59A05CE1D3914A000E6B652 /* UILayoutGuide+DeclarativeLayout.swift in Sources */,
+				A50145451D465BDB003EC7DD /* NSFetchedResultsController+CollectionModel.swift in Sources */,
 				A59A05DC1D3937CA00E6B652 /* MaxWidthLayout.swift in Sources */,
 				A59A05D41D3914F700E6B652 /* InfoLayout.swift in Sources */,
 			);
