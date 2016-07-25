@@ -4,14 +4,34 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>DeclarativeLayout.xcscheme</key>
+		<key>DeclarativeLayout.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>DemoLayouts.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>LayoutDemo.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>A539F83D1D3B6B2A0069A2B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A539F8531D3B6B430069A2B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A59A05851D39130C00E6B652</key>
 		<dict>
 			<key>primary</key>
