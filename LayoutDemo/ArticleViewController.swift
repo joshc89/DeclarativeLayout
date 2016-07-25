@@ -19,9 +19,9 @@ struct Article {
     let bodyHTML: String
 }
 
-class ArticleViewController: UIViewController {
-    
-    let parallaxScrollLayout: ParallaxScrollLayout
+
+
+class ArticleViewController: DLViewController {
     
     init(article:Article) {
         
@@ -32,54 +32,32 @@ class ArticleViewController: UIViewController {
         
         let dateString = dateFormatter.stringFromDate(article.date)
         
-        let titleLayout = TitledLayout(title: article.title, subtitle: dateString)
-        
+        // create a text view containing the NSAttributedString representing the html
         let articleData = article.bodyHTML.dataUsingEncoding(NSUTF8StringEncoding)
         let articleBody = try? NSAttributedString(data: articleData ?? NSData(),
                                                   options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding],
                                                   documentAttributes: nil)
         
-        let articleLabel = UILabel()
-        articleLabel.numberOfLines = 0
-        articleLabel.attributedText = articleBody
         
-        let articleContent = UIStackView(arrangedLayouts: [titleLayout, articleLabel])
-        articleContent.axis = .Vertical
-        articleContent.spacing = 16.0
-
-        let maxWidth = MaxWidthLayout(child: articleContent, maxWidth: 667)
-        
-        // give the scroll content a white background
-        let scrollContentView = UIView()
-        scrollContentView.backgroundColor = UIColor.whiteColor()
-        scrollContentView.addLayout(maxWidth)
-        let contentConstraints = maxWidth.boundary.constraintsAligningEdgesTo(scrollContentView.layoutMarginsGuide, withInsets: UIEdgeInsetsMake(16, 8, 16, 8))
-        NSLayoutConstraint.activateConstraints(contentConstraints)
+        let articleView = UITextView()
+        articleView.attributedText = articleBody
+        articleView.scrollEnabled = false
+        articleView.editable = false
+        articleView.selectable = true
         
         // create the background content for the scroll layout
         let background = UIImageView(image: article.image)
         background.contentMode = .ScaleAspectFit
         
-        // create the layout
-        parallaxScrollLayout = ParallaxScrollLayout(backgroundLayout: background, foregroundLayout: scrollContentView)
+        let articleLayout = DetailPageLayout(title: article.title,
+                                             subtitle: dateString,
+                                             backgroundLayout: background,
+                                             contentLayout: articleView)
         
-        super.init(nibName: nil, bundle: nil)
+        super.init(layout: articleLayout, toMargins: false)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = UIColor.whiteColor()
-        view.addLayout(parallaxScrollLayout)
-        
-        let edgeConstraints = parallaxScrollLayout.boundary.constraintsAligningEdgesTo(view)
-        view.addConstraints(edgeConstraints)
-        
-        // ensure hero image isn't too large
-        parallaxScrollLayout.backgroundLayout.boundary.heightAnchor.constraintLessThanOrEqualToAnchor(view.heightAnchor, multiplier: 0.5).active = true
     }
 }

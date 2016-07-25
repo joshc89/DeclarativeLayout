@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A52DF94D1D4613EB00ED8DE9 /* DLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52DF94C1D4613EB00ED8DE9 /* DLViewController.swift */; };
 		A539F8571D3B6B430069A2B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539F8561D3B6B430069A2B6 /* AppDelegate.swift */; };
 		A539F8591D3B6B430069A2B6 /* TitledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A539F8581D3B6B430069A2B6 /* TitledViewController.swift */; };
 		A539F85C1D3B6B430069A2B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A539F85A1D3B6B430069A2B6 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		A59A05D81D392CDA00E6B652 /* InsetLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A05D71D392CDA00E6B652 /* InsetLayout.swift */; };
 		A59A05DA1D39377800E6B652 /* ParallaxScrollLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A05D91D39377800E6B652 /* ParallaxScrollLayout.swift */; };
 		A59A05DC1D3937CA00E6B652 /* MaxWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59A05DB1D3937CA00E6B652 /* MaxWidthLayout.swift */; };
+		A59E118F1D3E056F00EB725B /* DetailPageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E118E1D3E056F00EB725B /* DetailPageLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A52DF94C1D4613EB00ED8DE9 /* DLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DLViewController.swift; path = "Example Layouts/DLViewController.swift"; sourceTree = "<group>"; };
 		A539F8541D3B6B430069A2B6 /* LayoutDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A539F8561D3B6B430069A2B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A539F8581D3B6B430069A2B6 /* TitledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 		A59A05D71D392CDA00E6B652 /* InsetLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InsetLayout.swift; path = "Example Layouts/InsetLayout.swift"; sourceTree = "<group>"; };
 		A59A05D91D39377800E6B652 /* ParallaxScrollLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxScrollLayout.swift; path = "Example Layouts/ParallaxScrollLayout.swift"; sourceTree = "<group>"; };
 		A59A05DB1D3937CA00E6B652 /* MaxWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaxWidthLayout.swift; path = "Example Layouts/MaxWidthLayout.swift"; sourceTree = "<group>"; };
+		A59E118E1D3E056F00EB725B /* DetailPageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailPageLayout.swift; path = "Example Layouts/DetailPageLayout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +216,8 @@
 				A59A05D71D392CDA00E6B652 /* InsetLayout.swift */,
 				A59A05DB1D3937CA00E6B652 /* MaxWidthLayout.swift */,
 				A59A05D91D39377800E6B652 /* ParallaxScrollLayout.swift */,
+				A59E118E1D3E056F00EB725B /* DetailPageLayout.swift */,
+				A52DF94C1D4613EB00ED8DE9 /* DLViewController.swift */,
 			);
 			name = "Example Layouts";
 			sourceTree = "<group>";
@@ -375,6 +381,8 @@
 				A59A05D01D3914AF00E6B652 /* UIStackView+DeclarativeLayout.swift in Sources */,
 				A59A05C51D39141C00E6B652 /* AnchoredObject.swift in Sources */,
 				A59A05D21D3914D700E6B652 /* TitledLayout.swift in Sources */,
+				A52DF94D1D4613EB00ED8DE9 /* DLViewController.swift in Sources */,
+				A59E118F1D3E056F00EB725B /* DetailPageLayout.swift in Sources */,
 				A59A05CC1D39148400E6B652 /* UIView+DeclarativeLayout.swift in Sources */,
 				A59A05D61D39151000E6B652 /* ErrorLayout.swift in Sources */,
 				A59A05D81D392CDA00E6B652 /* InsetLayout.swift in Sources */,
