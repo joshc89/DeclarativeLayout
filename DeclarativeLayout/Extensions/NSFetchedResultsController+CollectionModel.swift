@@ -9,9 +9,9 @@
 import Foundation
 import CoreData
 
-public struct NSFetchedResultsCollection<T: Equivalent, NSManagedObject>: CollectionModel {
-    
-}
+//public struct NSFetchedResultsCollection<T: Equivalent, NSManagedObject>: CollectionModel {
+//    
+//}
 
 extension NSFetchedResultsController: CollectionModel {
     
@@ -37,10 +37,5 @@ extension NSFetchedResultsController: CollectionModel {
     
     public func indexPathForElement(element: NSManagedObject) -> NSIndexPath? {
         return indexPathForObject(element)
-    }
-    
-    public func modificationsBetween(collection: NSFetchedResultsController) -> CollectionModification {
-        
-        return CollectionModification()
     }
 }

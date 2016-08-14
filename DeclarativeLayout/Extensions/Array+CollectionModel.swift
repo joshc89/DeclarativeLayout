@@ -11,7 +11,35 @@ import Foundation
 // TODO: extend generic typealias in Swift 3
 // typealias EquivalentArray<T: Equivalent> = Array<T>
 
-extension Array where Element: Equivalent {
+
+extension Array: CollectionSection {
+    
+// MARK: CollectionSection Conformance (i.e. Subsection)
+    
+    public var sectionTitle: String? {
+        return nil
+    }
+    
+    public var sectionIndexTitle: String? {
+        return nil
+    }
+    
+    public func numberOfItems() -> Int {
+        return count
+    }
+    
+    public func itemAtIndex(index: Int) -> Element {
+        return self[index]
+    }
+    
+}
+
+// MARK: - CollectionModel Conformance
+
+/*
+extension Array: CollectionModel {
+    
+    // MARK: Single Section Collection
     
     public func numberOfSections() -> Int {
         return 1
@@ -32,51 +60,31 @@ extension Array where Element: Equivalent {
     public func indexTitleForSection(section: Int) -> String? {
         return nil
     }
+}
+*/
 
-    func indexPath(forIndex: Int) -> NSIndexPath {
-        return NSIndexPath(forItem: forIndex, inSection: 0)
+extension Array where Element: CollectionSection {
+    
+    // MARK: Array of CollectionSections
+    
+    public func numberOfSections() -> Int {
+        return count
     }
     
-    func indexPathForElement(element: Element) -> NSIndexPath? {
-        return indexOf(element).flatMap { NSIndexPath(forItem: $0, inSection: 0) }
+    public func numberOfItemsInSection(section: Int) -> Int {
+        
+        return self[section].numberOfItems()
     }
     
-    func modificationsBetween(collection: [Element]) -> CollectionModification {
-        
-//        let newRange: Range = 0..<collection.count
-        var inserts = Set(0..<collection.count)  // removed on iteration if present in both collections
-        var deletes = [NSIndexPath]()
-        var moves = [(from: NSIndexPath, to: NSIndexPath)]()
-        var reloads = [NSIndexPath]()
-        
-        // calculate
-        
-        for (idx, element) in self.enumerate() {
-         
-            if let newIdx = collection.indexOf(element) {
-                
-                // this isn't a new element
-                inserts.remove(newIdx)
-                
-                if newIdx == idx {
-                    
-                    if !element.equivalentTo(collection[newIdx]) {
-                        reloads.append(indexPath(idx))
-                    }
-                    
-                } else {
-                    moves.append( (from: indexPath(idx), to: indexPath(newIdx)) )
-                }
-                
-            } else {
-                deletes.append(indexPath(idx))
-            }
-        }
-        
-        return CollectionModification(rowInsertions: inserts.map { self.indexPath($0) },
-                                      rowDeletions: deletes,
-                                      rowMoves: moves,
-                                      rowReloads: reloads)
+    public func itemAtIndexPath(indexPath: NSIndexPath) -> Element.Element {
+        return self[indexPath.section].itemAtIndex(indexPath.row)
     }
     
+    public func titleForSection(section: Int) -> String? {
+        return self[section].sectionTitle
+    }
+    
+    public func indexTitleForSection(section: Int) -> String? {
+        return self[section].sectionIndexTitle
+    }
 }

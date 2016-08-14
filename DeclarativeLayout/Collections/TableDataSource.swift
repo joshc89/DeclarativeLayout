@@ -8,74 +8,29 @@
 
 import UIKit
 
-public extension UITableView {
+// subclass as we are providing explicit delegate behaviour
+public class TableManager<CollectionType: CollectionModel>: NSObject, UITableViewDataSource {
     
-    func applyModification(modifications: CollectionModification, animated: Bool) {
-        
-        if animated {
-        
-            beginUpdates()
-            
-            if modifications.rowDeletions.count > 0 {
-                deleteRowsAtIndexPaths(modifications.rowDeletions, withRowAnimation: .Automatic)
-            }
-            
-            if modifications.rowInsertions.count > 0 {
-                insertRowsAtIndexPaths(modifications.rowInsertions, withRowAnimation: .Automatic)
-            }
-            
-            if modifications.rowReloads.count > 0 {
-                reloadRowsAtIndexPaths(modifications, withRowAnimation: .Automatic)
-            }
-            
-            for (from, to) in modifications.rowMoves {
-                moveRowAtIndexPath(from, toIndexPath: to)
-            }
-            
-            if modifications.sectionInsertions.count > 0 {
-                insertSections(modifications.sectionInsertions, withRowAnimation: .Automatic)
-            }
-            
-            if modifications.sectionDeletions.count > 0 {
-                deleteSections(modifications.sectionDeletions, withRowAnimation: .Automatic)
-            }
-            
-            if modifications.sectionReloads.count > 0 {
-                reloadSections(modifications.sectionReloads, withRowAnimation: .Automatic)
-            }
-            
-            for (from, to) in modifications.sectionMoves {
-                moveSection(from, toSection: to)
-            }
-            
-            endUpdates()
-            
-        } else {
-            
-            reloadData()
-        }
-    }
-}
-
-public class TableLayout<CollectionType: CollectionModel>: NSObject, UITableViewDataSource, Layout {
-    
+    // Intended one data source per table view hence `let`
     public let tableView: UITableView
     
+    // read-only. use `updateCollection(_:animated:)` as setter instead.
     public private(set) var collection: CollectionType
     
-    init(collection: CollectionType, style: UITableViewStyle = .Plain) {
+    public init(tableView: UITableView, collection: CollectionType) {
         
         self.collection = collection
+        self.tableView = tableView
         
-        tableView = UITableView(frame: CGRectZero, style: style)
+        super.init()
+        
+        tableView.dataSource = self
     }
     
     public func updateCollection(collection: CollectionType, animated: Bool) {
         
-        let oldValue = self.collection
         self.collection = collection
-        
-        tableView.applyModification(oldValue.modificationsBetween(collection), animated: animated)
+        tableView.reloadData()
     }
     
     // MARK: UITableViewDataSource Conformance
@@ -88,17 +43,35 @@ public class TableLayout<CollectionType: CollectionModel>: NSObject, UITableView
         return collection.numberOfItemsInSection(section)
     }
     
+    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return collection.titleForSection(section)
+    }
+    
+    public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        
+        let possibleTitles = (0..<collection.numberOfSections()).map { self.collection.indexTitleForSection($0) }
+        
+        let allAvailable = possibleTitles.reduce(true) { $0 && $1 != nil }
+        
+        return allAvailable ? possibleTitles.flatMap { $0 } : nil
+    }
+    
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return UITableViewCell(style: .Default, reuseIdentifier: "CollectionCell")
     }
+}
+
+extension TableManager where CollectionType: DifferentiableCollectionModel {
     
-    // MARK: Layout Conformance
-    
-    public var boundary: AnchoredObject {
-        return tableView
-    }
-    
-    public var elements: [Layout] {
-        return [tableView]
+    public func updateCollection(collection: CollectionType, animated: Bool) {
+        
+        let oldValue = self.collection
+        self.collection = collection
+        
+        if animated {
+            tableView.applyModification(oldValue.modificationsBetween(collection), animated: animated)
+        } else {
+            tableView.reloadData()
+        }
     }
 }
