@@ -34,9 +34,6 @@
                 <a href="Classes/DLViewController.html">DLViewController</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/MaxWidthLayout.html">MaxWidthLayout</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Classes/ParallaxScrollLayout.html">ParallaxScrollLayout</a>
               </li>
             </ul>
@@ -85,6 +82,9 @@
                 <a href="Structs/InsetLayout.html">InsetLayout</a>
               </li>
               <li class="nav-group-task">
+                <a href="Structs/MaxWidthLayout.html">MaxWidthLayout</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Structs/TitledLayout.html">TitledLayout</a>
               </li>
             </ul>
@@ -119,6 +119,10 @@
 <p>Encapsultaing this behaviour in a single object rather than in a view controller makes it easier to reuse and update. It also makes it easier to focus on just the code regarding layout, rather than that code being lost in delegate callbacks on parent view controllers.</p>
 
 <p>More example <code>Layout</code>s are given within the framework. Download the repo to check them out.</p>
+
+<p><a href="https://joshc89.github.io/DeclarativeLayout/Extensions/UIView.html">UIView.addLayout(_:)</a> has been included as a convenience function that adds the elements of a <code>Layout</code>, ensuring they can be used correctly in AutoLayout.</p>
+
+<p><a href="https://joshc89.github.io/DeclarativeLayout/Classes/DLViewController.html">DLViewController</a> is a convenience class for creating simple <code>UIViewController</code>s with a <code>Layout</code> parameter. This makes programmatic layout code simpler, removing some of the boilerplate code for setting up the <code>Layout</code> within <code>view</code>.</p>
 <a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
 
 <ul>
