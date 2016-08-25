@@ -1,0 +1,4 @@
+[submodule "Documentation"]
+	path = Documentation
+	url = https://joshc89@github.com/joshc89/DeclarativeLayout.git
+	branch = gh-pages

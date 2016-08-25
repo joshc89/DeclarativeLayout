@@ -9,7 +9,7 @@
 import UIKit
 
 /// Simple `Layout` constraining the width of a child `Layout` to a maximum size. If the width of `child` would exceed that of `boundary` it is centered horizontally within `boundary`.
-public class MaxWidthLayout: Layout {
+public struct MaxWidthLayout: Layout {
     
     /// Maximum width `child` can take.
     public var maxWidth:CGFloat {

@@ -80,8 +80,49 @@ extension UIView: Layout {
         return [self]
     }
     
-    /// There are no internal constraints need to configure this view.
+    /// There are no internal constraints needed to configure this view.
     public func generateConstraints() -> [NSLayoutConstraint] {
         return []
+    }
+}
+
+
+/// Extension of `UIView` enumerating the types of edge.
+public extension UIView {
+    
+    /**
+ 
+     Type enumerating the types of edges a view can align its content to. These can be passed in as a parameter to a `Layout` to allow the user to customise the layout within specific parameters.
+     
+     - seealso: `ParallaxScrollLayout`'s convenience initialisers. 
+ 
+    */
+    public enum Edge {
+        /// Represents the boundary of this view.
+        case Bounds
+        /// Represents the `layoutMarginsGuide` of this view.
+        case LayoutMargins
+        /// Represents the `readableContentGuide` of this view.
+        case ReadableContent
+    }
+    
+    /**
+     
+     Convenience method allowing access to a representation of `UIView.Edge`.
+     
+     - parameter edge: The type of edge requested.
+     - returns: either the views boundary (i.e. `self`), `layoutMarginsGuide` or `readableContentGuide`.
+    */
+    public func anchorsForEdge(edge: Edge) -> AnchoredObject {
+    
+        switch edge {
+        case .Bounds:
+            return self
+        case .LayoutMargins:
+            return layoutMarginsGuide
+        case .ReadableContent:
+            return readableContentGuide
+        }
+    
     }
 }

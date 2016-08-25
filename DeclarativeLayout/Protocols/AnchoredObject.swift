@@ -20,8 +20,6 @@ public typealias AnchoredNSObject = protocol<AnchoredObject, NSObjectProtocol>
  */
 public protocol AnchoredObject {
     
-    var layoutFrame:CGRect { get }
-    
     // MARK: X-Axis Anchors
     
     /// A layout anchor representing the left edge of the layout guide’s frame.
