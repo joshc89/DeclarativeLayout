@@ -110,11 +110,11 @@
 <p>Reusable, composable, declarative constraint based layout in Swift.</p>
 <a href='#description' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='description'>Description</h2>
 
-<p>Constraint based variant of the protocol described in <a href="https://developer.apple.com/videos/play/wwdc2016/419/">WWDC 2016 Session 419: Protocol and Value Oriented Programming in UIKit Apps</a></p>
+<p>Constraint based variant of the protocol described in <a href="https://developer.apple.com/videos/play/wwdc2016/419/">WWDC 2016 Session 419: Protocol and Value Oriented Programming in UIKit Apps</a>.</p>
 
 <p>A <a href="https://joshc89.github.io/DeclarativeLayout/Protocols/Layout.html">Layout</a> combines one or more views, layout guides and constraints into a single object, including logic, that can be reused and composed of other <code>Layout</code>s. It is a protocol that both <code>UIView</code> and <code>UILayoutGuide</code> conform to, so these can be used as elements in other more complex layouts.</p>
 
-<p>For example, the <code>ParallaxScrollLayout</code> takes a <code>Layout</code> for the background and a <code>Layout</code> for the scroll content, it takes care of positioning those relative to each other. The positioning of the elements within the background and scroll content should be in their respective parent <code>Layout</code>s. It also reponds to the user scrolling the content, adjusting the offset between the two <code>Layout</code>s to give a parallax effect.</p>
+<p>For example, the <code>ParallaxScrollLayout</code> takes a <code>Layout</code> for the background and foreground. It handles positioning those relative to each other as the user scrolls, adjusting the offset between the two <code>Layout</code>s to give a parallax effect. The positioning of the elements within the background / foreground should be in their respective parent <code>Layout</code>s.</p>
 
 <p>Encapsultaing this behaviour in a single object rather than in a view controller makes it easier to reuse and update. It also makes it easier to focus on just the code regarding layout, rather than that code being lost in delegate callbacks on parent view controllers.</p>
 
@@ -122,13 +122,17 @@
 
 <p><a href="https://joshc89.github.io/DeclarativeLayout/Extensions/UIView.html">UIView.addLayout(_:)</a> has been included as a convenience function that adds the elements of a <code>Layout</code>, ensuring they can be used correctly in AutoLayout.</p>
 
-<p><a href="https://joshc89.github.io/DeclarativeLayout/Classes/DLViewController.html">DLViewController</a> is a convenience class for creating simple <code>UIViewController</code>s with a <code>Layout</code> parameter. This makes programmatic layout code simpler, removing some of the boilerplate code for setting up the <code>Layout</code> within <code>view</code>.</p>
-<a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
+<p><a href="https://joshc89.github.io/DeclarativeLayout/Classes/DLViewController.html">DLViewController</a> is a convenience class for creating simple <code>UIViewController</code>s with a <code>Layout</code> parameter. This makes programmatic layout code simpler, removing some of the boilerplate code for setting up the <code>Layout</code> within <code>UIViewController.view</code>.</p>
+
+<p><em>Note: This library supports iOS 9+ as it requires <code>UILayoutGuide</code> and <code>NSLayoutAnchor</code></em></p>
+<a href='#roadmap' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='roadmap'>Roadmap</h2>
 
 <ul>
 <li>[x] <a href="https://joshc89.github.io/DeclarativeLayout/">Documentation</a></li>
 <li>[] Collection Layouts (in progress on branch <code>feature/Collections</code>)</li>
 <li>[] State based Layouts and transitions</li>
+<li>[] macOS support (<code>NSView</code>)</li>
+<li>[] Cocopods support</li>
 </ul>
 
           </section>
