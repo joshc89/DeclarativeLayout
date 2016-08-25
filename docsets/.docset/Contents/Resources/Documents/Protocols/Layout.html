@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Layout Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/Layout" class="dashAnchor"></a>
+    <a title="Layout Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (90% documented)</p>
+        <p class="header-right"><a href="https://github.com/joshc89/DeclarativeLayout"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Layout Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DLViewController.html">DLViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MaxWidthLayout.html">MaxWidthLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ParallaxScrollLayout.html">ParallaxScrollLayout</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/UILayoutGuide.html">UILayoutGuide</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIStackView.html">UIStackView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIView.html">UIView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AnchoredObject.html">AnchoredObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Layout.html">Layout</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/DetailPageLayout.html">DetailPageLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ErrorLayout.html">ErrorLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ErrorLayout/Error.html">– Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/InfoLayout.html">InfoLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/InsetLayout.html">InsetLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TitledLayout.html">TitledLayout</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:17DeclarativeLayout16AnchoredNSObject">AnchoredNSObject</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Layout</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Layout</span></code></pre>
+
+                </div>
+              </div>
+            <p>Protocol defining the requirements for objects to provide a declarative layout using Auto Layout.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP17DeclarativeLayout6Layout8boundaryPS_14AnchoredObject_"></a>
+                    <a name="//apple_ref/swift/Property/boundary" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP17DeclarativeLayout6Layout8boundaryPS_14AnchoredObject_">boundary</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code><a href="../Protocols/AnchoredObject.html">AnchoredObject</a></code> that should be used to position this <code><a href="../Protocols/Layout.html">Layout</a></code> amongst others.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">boundary</span><span class="p">:</span> <span class="kt">AnchoredObject</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vP17DeclarativeLayout6Layout8elementsGSaPS0___"></a>
+                    <a name="//apple_ref/swift/Property/elements" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vP17DeclarativeLayout6Layout8elementsGSaPS0___">elements</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An array of sub-<code><a href="../Protocols/Layout.html">Layout</a></code> objects that make up this <code><a href="../Protocols/Layout.html">Layout</a></code>. These will be added to a <code><a href="../Extensions/UIView.html">UIView</a></code> in the order they are given in this array in <code>addLayout(_:)</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">elements</span><span class="p">:</span> <span class="p">[</span><span class="kt">Layout</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP17DeclarativeLayout6Layout19generateConstraintsFT_GSaCSo18NSLayoutConstraint_"></a>
+                    <a name="//apple_ref/swift/Method/generateConstraints()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP17DeclarativeLayout6Layout19generateConstraintsFT_GSaCSo18NSLayoutConstraint_">generateConstraints()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The constraints required to internally position this <code><a href="../Protocols/Layout.html">Layout</a></code>. These should be activated once the <code><a href="../Protocols/Layout.html#/s:vP17DeclarativeLayout6Layout8elementsGSaPS0___">elements</a></code> of this <code><a href="../Protocols/Layout.html">Layout</a></code> has been added to a super view. You should remember to add the constraints of any child Layouts in <code><a href="../Protocols/Layout.html#/s:vP17DeclarativeLayout6Layout8elementsGSaPS0___">elements</a></code>.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation returning the <code>elementConstraints()</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">generateConstraints</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">NSLayoutConstraint</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE17DeclarativeLayoutPS_6Layout18elementConstraintsFT_GSaCSo18NSLayoutConstraint_"></a>
+                    <a name="//apple_ref/swift/Method/elementConstraints()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE17DeclarativeLayoutPS_6Layout18elementConstraintsFT_GSaCSo18NSLayoutConstraint_">elementConstraints()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convenience function returning the combined constraints for all of the <code><a href="../Protocols/Layout.html">Layout</a></code>s in <code><a href="../Protocols/Layout.html#/s:vP17DeclarativeLayout6Layout8elementsGSaPS0___">elements</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">elementConstraints</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">NSLayoutConstraint</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE17DeclarativeLayoutPS_6Layout15useInAutoLayoutFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/useInAutoLayout()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE17DeclarativeLayoutPS_6Layout15useInAutoLayoutFT_T_">useInAutoLayout()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Recursive function updating all the child <code><a href="../Extensions/UIView.html">UIView</a></code>s in <code><a href="../Protocols/Layout.html#/s:vP17DeclarativeLayout6Layout8elementsGSaPS0___">elements</a></code> to have <code>translatesAutoresizingMaskIntoConstraints</code> to <code>false</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">useInAutoLayout</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Josh Campion</a>. All rights reserved. (Last updated: 2016-08-25)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
