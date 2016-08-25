@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Error Struct Reference</title>
+    <title>Edge Enum Reference</title>
     <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/Error" class="dashAnchor"></a>
-    <a title="Error Struct Reference"></a>
+    <a name="//apple_ref/swift/Enum/Edge" class="dashAnchor"></a>
+    <a title="Edge Enum Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../../index.html"> Docs</a> (100% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../../index.html"> Reference</a>
         <img id="carat" src="../../img/carat.png" />
-        Error Struct Reference
+        Edge Enum Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -103,14 +103,20 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Error</h1>
+            <h1>Edge</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Error</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Edge</span></code></pre>
 
                 </div>
               </div>
-            <p>Internal struct used to encapsulate the objects needed to show an error.</p>
+            <p>Type enumerating the types of edges a view can align its content to. These can be passed in as a parameter to a <code><a href="../../Protocols/Layout.html">Layout</a></code> to allow the user to customise the layout within specific parameters.</p>
+
+<div class="aside aside-seealso">
+    <p class="aside-title">Seealso</p>
+    <code><a href="../../Classes/ParallaxScrollLayout.html">ParallaxScrollLayout</a></code>&rsquo;s convenience initialisers.
+
+</div>
 
           </section>
           <section class="section task-group-section">
@@ -119,9 +125,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVV17DeclarativeLayout11ErrorLayout5Error7messageSS"></a>
-                    <a name="//apple_ref/swift/Property/message" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVV17DeclarativeLayout11ErrorLayout5Error7messageSS">message</a>
+                    <a name="/s:FOE17DeclarativeLayoutCSo6UIView4Edge6BoundsFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/Bounds" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOE17DeclarativeLayoutCSo6UIView4Edge6BoundsFMS1_S1_">Bounds</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -129,26 +135,30 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The text of the error</p>
+                        <p>Represents the boundary of this view.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Bounds</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVV17DeclarativeLayout11ErrorLayout5Error4iconGSqCSo7UIImage_"></a>
-                    <a name="//apple_ref/swift/Property/icon" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVV17DeclarativeLayout11ErrorLayout5Error4iconGSqCSo7UIImage_">icon</a>
+                    <a name="/s:FOE17DeclarativeLayoutCSo6UIView4Edge13LayoutMarginsFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/LayoutMargins" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOE17DeclarativeLayoutCSo6UIView4Edge13LayoutMarginsFMS1_S1_">LayoutMargins</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -156,26 +166,30 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The associated image of the error.</p>
+                        <p>Represents the <code>layoutMarginsGuide</code> of this view.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">icon</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">LayoutMargins</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FVV17DeclarativeLayout11ErrorLayout5ErrorcFT7messageSS4iconGSqCSo7UIImage__S1_"></a>
-                    <a name="//apple_ref/swift/Method/init(message:icon:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FVV17DeclarativeLayout11ErrorLayout5ErrorcFT7messageSS4iconGSqCSo7UIImage__S1_">init(message:icon:)</a>
+                    <a name="/s:FOE17DeclarativeLayoutCSo6UIView4Edge15ReadableContentFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/ReadableContent" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOE17DeclarativeLayoutCSo6UIView4Edge15ReadableContentFMS1_S1_">ReadableContent</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -183,14 +197,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Default initialiser.</p>
+                        <p>Represents the <code>readableContentGuide</code> of this view.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">icon</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">ReadableContent</span></code></pre>
 
                         </div>
                       </div>

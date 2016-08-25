@@ -13,7 +13,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (90% documented)</p>
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/joshc89/DeclarativeLayout"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -53,6 +53,9 @@
               <li class="nav-group-task">
                 <a href="Extensions/UIView.html">UIView</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Extensions/UIView/Edge.html">– Edge</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -69,9 +72,6 @@
           <li class="nav-group-name">
             <a href="Structs.html">Structs</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Structs/DetailPageLayout.html">DetailPageLayout</a>
-              </li>
               <li class="nav-group-task">
                 <a href="Structs/ErrorLayout.html">ErrorLayout</a>
               </li>
@@ -107,16 +107,25 @@
 
 <p><a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a></p>
 
-<p>Reusable, composable layouts in Swift.</p>
+<p>Reusable, composable, declarative constraint based layout in Swift.</p>
 <a href='#description' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='description'>Description</h2>
 
 <p>Constraint based variant of the protocol described in <a href="https://developer.apple.com/videos/play/wwdc2016/419/">WWDC 2016 Session 419: Protocol and Value Oriented Programming in UIKit Apps</a></p>
 
-<p>A <code>Layout</code> combines one or more views, layout guides and constraints into a single object, including logic, that can be reused and composed of other <code>Layout</code>s. It is a protocol that both <code>UIView</code> and <code>UILayoutGuide</code> conform to, so these can be used as elements in other more complex layouts.</p>
+<p>A <a href="https://joshc89.github.io/DeclarativeLayout/Protocols/Layout.html">Layout</a> combines one or more views, layout guides and constraints into a single object, including logic, that can be reused and composed of other <code>Layout</code>s. It is a protocol that both <code>UIView</code> and <code>UILayoutGuide</code> conform to, so these can be used as elements in other more complex layouts.</p>
 
-<p>The <code>ParallaxScrollLayout</code> takes a <code>Layout</code> for the background and a <code>Layout</code> for the scroll content, it takes care of positioning those relative to each other but not any other nested components. It also reponds to the user scrolling the content, adjusting the offset between the two <code>Layout</code>s to give a parallax effect.</p>
+<p>For example, the <code>ParallaxScrollLayout</code> takes a <code>Layout</code> for the background and a <code>Layout</code> for the scroll content, it takes care of positioning those relative to each other. The positioning of the elements within the background and scroll content should be in their respective parent <code>Layout</code>s. It also reponds to the user scrolling the content, adjusting the offset between the two <code>Layout</code>s to give a parallax effect.</p>
 
 <p>Encapsultaing this behaviour in a single object rather than in a view controller makes it easier to reuse and update. It also makes it easier to focus on just the code regarding layout, rather than that code being lost in delegate callbacks on parent view controllers.</p>
+
+<p>More example <code>Layout</code>s are given within the framework. Download the repo to check them out.</p>
+<a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
+
+<ul>
+<li>[x] <a href="https://joshc89.github.io/DeclarativeLayout/">Documentation</a></li>
+<li>[] Collection Layouts (in progress on branch <code>feature/Collections</code>)</li>
+<li>[] State based Layouts and transitions</li>
+</ul>
 
           </section>
         </section>

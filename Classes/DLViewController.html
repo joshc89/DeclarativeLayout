@@ -14,7 +14,7 @@
     <a title="DLViewController Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (90% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/joshc89/DeclarativeLayout"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -54,6 +54,9 @@
               <li class="nav-group-task">
                 <a href="../Extensions/UIView.html">UIView</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIView/Edge.html">– Edge</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -70,9 +73,6 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Structs/DetailPageLayout.html">DetailPageLayout</a>
-              </li>
               <li class="nav-group-task">
                 <a href="../Structs/ErrorLayout.html">ErrorLayout</a>
               </li>
@@ -241,14 +241,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Required initialiser. This will fail as this class is designed to work simply with a <code><a href="../Protocols/Layout.html">Layout</a></code> object, rather than implementing layout code in a Storyboard.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DLViewController</span><span class="p">:</span> <span class="kt">UIViewController</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">required</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>

@@ -14,7 +14,7 @@
     <a title="UIView Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (90% documented)</p>
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/joshc89/DeclarativeLayout"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -54,6 +54,9 @@
               <li class="nav-group-task">
                 <a href="../Extensions/UIView.html">UIView</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIView/Edge.html">– Edge</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -70,9 +73,6 @@
           <li class="nav-group-name">
             <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Structs/DetailPageLayout.html">DetailPageLayout</a>
-              </li>
               <li class="nav-group-task">
                 <a href="../Structs/ErrorLayout.html">ErrorLayout</a>
               </li>
@@ -324,7 +324,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>There are no internal constraints need to configure this view.</p>
+                        <p>There are no internal constraints needed to configure this view.</p>
 
                       </div>
                       <div class="declaration">
@@ -334,6 +334,96 @@
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">generateConstraints</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">NSLayoutConstraint</span><span class="p">]</span></code></pre>
 
                         </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:OE17DeclarativeLayoutCSo6UIView4Edge"></a>
+                    <a name="//apple_ref/swift/Enum/Edge" class="dashAnchor"></a>
+                    <a class="token" href="#/s:OE17DeclarativeLayoutCSo6UIView4Edge">Edge</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Type enumerating the types of edges a view can align its content to. These can be passed in as a parameter to a <code><a href="../Protocols/Layout.html">Layout</a></code> to allow the user to customise the layout within specific parameters.</p>
+
+<div class="aside aside-seealso">
+    <p class="aside-title">Seealso</p>
+    <code><a href="../Classes/ParallaxScrollLayout.html">ParallaxScrollLayout</a></code>&rsquo;s convenience initialisers.
+
+</div>
+
+                        <a href="../Extensions/UIView/Edge.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Edge</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE17DeclarativeLayoutCSo6UIView14anchorsForEdgeFOES_S0_4EdgePS_14AnchoredObject_"></a>
+                    <a name="//apple_ref/swift/Method/anchorsForEdge(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE17DeclarativeLayoutCSo6UIView14anchorsForEdgeFOES_S0_4EdgePS_14AnchoredObject_">anchorsForEdge(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convenience method allowing access to a representation of <code><a href="../Extensions/UIView/Edge.html">UIView.Edge</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">anchorsForEdge</span><span class="p">(</span><span class="nv">edge</span><span class="p">:</span> <span class="kt">Edge</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AnchoredObject</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>edge</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of edge requested.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>either the views boundary (i.e. <code>self</code>), <code>layoutMarginsGuide</code> or <code>readableContentGuide</code>.</p>
+
                       </div>
                     </section>
                   </div>
