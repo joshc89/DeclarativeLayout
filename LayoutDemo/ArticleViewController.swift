@@ -19,8 +19,6 @@ struct Article {
     let bodyHTML: String
 }
 
-
-
 class ArticleViewController: DLViewController {
     
     init(article:Article) {
@@ -41,6 +39,8 @@ class ArticleViewController: DLViewController {
         
         let articleView = UITextView()
         articleView.attributedText = articleBody
+        articleView.textContainer.lineFragmentPadding = 0;
+        articleView.textContainerInset = UIEdgeInsetsZero
         articleView.scrollEnabled = false
         articleView.editable = false
         articleView.selectable = true
@@ -49,12 +49,12 @@ class ArticleViewController: DLViewController {
         let background = UIImageView(image: article.image)
         background.contentMode = .ScaleAspectFit
         
-        let articleLayout = DetailPageLayout(title: article.title,
-                                             subtitle: dateString,
-                                             backgroundLayout: background,
-                                             contentLayout: articleView)
+        let articleLayout = ParallaxScrollLayout(backgroundLayout: background,
+                                                 title: article.title,
+                                                 subtitle: dateString,
+                                                 contentLayout: articleView)
         
-        super.init(layout: articleLayout, toMargins: false)
+        super.init(layout: articleLayout)
     }
     
     required init?(coder aDecoder: NSCoder) {

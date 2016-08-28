@@ -26,6 +26,7 @@ public struct ErrorLayout: Layout {
         /// The associated image of the error.
         public let icon: UIImage?
         
+        /// Default initialiser.
         public init(message: String, icon: UIImage?) {
             self.message = message
             self.icon = icon

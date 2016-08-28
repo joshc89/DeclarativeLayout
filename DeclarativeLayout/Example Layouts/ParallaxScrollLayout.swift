@@ -61,6 +61,7 @@ public final class ParallaxScrollLayout: NSObject, Layout {
         backgroundSpaceGuide = UILayoutGuide()
         
         // configure the scroll view
+        scrollView.preservesSuperviewLayoutMargins = true
         scrollView.addLayout(backgroundLayout)
         scrollView.addLayout(backgroundSpaceGuide)
         scrollView.addLayout(foregroundLayout)
