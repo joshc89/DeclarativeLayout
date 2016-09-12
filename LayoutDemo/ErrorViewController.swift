@@ -59,11 +59,11 @@ class ErrorViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.whiteColor()
-        view.addLayout(errorLayout)
+        view.add(layout: errorLayout)
         
         // set up the layout constraints
         let topConstraint = errorLayout.boundary.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor, constant: 8)
-        let edgeConstraints = errorLayout.boundary.constraintsAligningEdgesTo(view.layoutMarginsGuide)
+        let edgeConstraints = errorLayout.boundary.constraintsAligningEdges(to: view.layoutMarginsGuide)
         view.addConstraints([edgeConstraints[1], edgeConstraints[3], topConstraint])
     }
     

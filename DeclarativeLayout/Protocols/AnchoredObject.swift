@@ -9,7 +9,7 @@
 import UIKit
 
 /// Public typealias allowing properties on an `AnchoredObject`s such as UIView and UILayoutGuide to be observed.
-public typealias AnchoredNSObject = protocol<AnchoredObject, NSObjectProtocol>
+public typealias AnchoredNSObject = AnchoredObject & NSObjectProtocol
 
 /**
  
@@ -70,13 +70,13 @@ public extension AnchoredObject {
      
      - returns: An array of created constraints in the order top, leading, bottom, trailing.
     */
-    public func constraintsAligningEdgesTo(to:AnchoredObject, withInsets:UIEdgeInsets = UIEdgeInsetsZero) -> [NSLayoutConstraint] {
+    public func constraintsAligningEdges(to:AnchoredObject, withInsets:UIEdgeInsets = .zero) -> [NSLayoutConstraint] {
         
         return [
-            topAnchor.constraintEqualToAnchor( to.topAnchor, constant: withInsets.top),
-            leadingAnchor.constraintEqualToAnchor( to.leadingAnchor, constant: withInsets.left),
-            bottomAnchor.constraintEqualToAnchor( to.bottomAnchor, constant: -withInsets.bottom),
-            trailingAnchor.constraintEqualToAnchor( to.trailingAnchor, constant: -withInsets.right),
+            topAnchor.constraint( equalTo: to.topAnchor, constant: withInsets.top),
+            leadingAnchor.constraint( equalTo: to.leadingAnchor, constant: withInsets.left),
+            bottomAnchor.constraint( equalTo: to.bottomAnchor, constant: -withInsets.bottom),
+            trailingAnchor.constraint( equalTo: to.trailingAnchor, constant: -withInsets.right),
         ]
     }
     
@@ -92,13 +92,13 @@ public extension AnchoredObject {
      - returns: An array of created constraints in the order centerX, centerY, xBuffer, yBuffer.
      
     */
-    public func constraintsCenteringOn(on: AnchoredObject, withOffset:CGPoint = CGPoint.zero, xBuffer:CGFloat? = nil, yBuffer:CGFloat? = nil) -> [NSLayoutConstraint] {
+    public func constraintsCentering(on: AnchoredObject, withOffset:CGPoint = CGPoint.zero, xBuffer:CGFloat? = nil, yBuffer:CGFloat? = nil) -> [NSLayoutConstraint] {
         
         return [
-            centerXAnchor.constraintEqualToAnchor( on.centerXAnchor, constant: withOffset.x),
-            centerYAnchor.constraintEqualToAnchor( on.centerYAnchor, constant: withOffset.y),
-            xBuffer.flatMap { self.leadingAnchor.constraintGreaterThanOrEqualToAnchor(on.leadingAnchor, constant: $0) },
-            yBuffer.flatMap { self.topAnchor.constraintGreaterThanOrEqualToAnchor(on.topAnchor, constant: $0) }
+            centerXAnchor.constraint( equalTo: on.centerXAnchor, constant: withOffset.x),
+            centerYAnchor.constraint( equalTo: on.centerYAnchor, constant: withOffset.y),
+            xBuffer.flatMap { self.leadingAnchor.constraint(greaterThanOrEqualTo: on.leadingAnchor, constant: $0) },
+            yBuffer.flatMap { self.topAnchor.constraint(greaterThanOrEqualTo: on.topAnchor, constant: $0) }
             ].flatMap { $0 }
     }
     
@@ -110,11 +110,11 @@ public extension AnchoredObject {
      - paramter priority: The priority of the size constraints. Default value is 1000.
      
     */
-    public func constraintsSizingTo(to:CGSize, priority:UILayoutPriority = 1000) -> [NSLayoutConstraint] {
+    public func constraintsSizing(to:CGSize, priority:UILayoutPriority = 1000) -> [NSLayoutConstraint] {
         
         let constraints = [
-            widthAnchor.constraintEqualToConstant(to.width),
-            heightAnchor.constraintEqualToConstant(to.height)
+            widthAnchor.constraint(equalToConstant: to.width),
+            heightAnchor.constraint(equalToConstant: to.height)
         ]
         
         if priority < 1000 {

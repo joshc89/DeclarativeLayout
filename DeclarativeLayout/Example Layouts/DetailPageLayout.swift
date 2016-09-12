@@ -29,25 +29,25 @@ public extension ParallaxScrollLayout {
                              title:String?,
                              subtitle:String?,
                              contentLayout: Layout,
-                             scrollContentEdge: UIView.Edge = .ReadableContent,
-                             withInsets: UIEdgeInsets = UIEdgeInsetsZero) {
+                             scrollContentEdge: UIView.Edge = .readableContent,
+                             withInsets: UIEdgeInsets = .zero) {
         
         let titleLayout = TitledLayout(title: title, subtitle: subtitle)
         
         let scrollContent = UIStackView(arrangedLayouts: [titleLayout, contentLayout])
-        scrollContent.axis = .Vertical
+        scrollContent.axis = .vertical
         scrollContent.spacing = 16.0
         scrollContent.translatesAutoresizingMaskIntoConstraints = false
         
         // give the scroll content a white background by nesting in a view.
         let scrollContentView = UIView()
-        scrollContentView.backgroundColor = UIColor.whiteColor()
+        scrollContentView.backgroundColor = UIColor.white
         scrollContentView.preservesSuperviewLayoutMargins = true
         
         scrollContentView.addSubview(scrollContent)
         
-        let contentConstraints = scrollContent.constraintsAligningEdgesTo(scrollContentView.anchorsForEdge(scrollContentEdge), withInsets: withInsets)
-        NSLayoutConstraint.activateConstraints(contentConstraints)
+        let contentConstraints = scrollContent.constraintsAligningEdges(to: scrollContentView.anchorsForEdge(scrollContentEdge), withInsets: withInsets)
+        NSLayoutConstraint.activate(contentConstraints)
         
         // create the layout
         self.init(backgroundLayout: backgroundLayout, foregroundLayout: scrollContentView)

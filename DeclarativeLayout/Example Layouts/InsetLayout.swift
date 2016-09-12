@@ -54,7 +54,7 @@ public struct InsetLayout: Layout {
         let insetGuide = UILayoutGuide()
         boundary = insetGuide
         elements = [insetGuide, child]
-        insetConstraints = child.boundary.constraintsAligningEdgesTo(insetGuide, withInsets: insets)
+        insetConstraints = child.boundary.constraintsAligningEdges(to: insetGuide, withInsets: insets)
     }
     
     /// - returns: The constraints to inset child from the edge, plus constraints from other sub elements.

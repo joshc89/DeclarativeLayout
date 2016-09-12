@@ -44,18 +44,18 @@ public struct TitledLayout: Layout {
         
         for l in [titleLabel, subtitleLabel] {
             l.numberOfLines = 0
-            l.setContentCompressionResistancePriority(755, forAxis: .Vertical)
+            l.setContentCompressionResistancePriority(755, for: .vertical)
         }
         
-        titleLabel.hidden = title?.isEmpty ?? true
-        subtitleLabel.hidden = subtitle?.isEmpty ?? true
+        titleLabel.isHidden = title?.isEmpty ?? true
+        subtitleLabel.isHidden = subtitle?.isEmpty ?? true
         
-        titleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        subtitleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+        subtitleLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         
         UIView.useInAutoLayout([titleLabel, subtitleLabel])
         textStack = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
-        textStack.axis = .Vertical
+        textStack.axis = .vertical
         textStack.spacing = 8.0
     }
 

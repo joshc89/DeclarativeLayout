@@ -14,7 +14,7 @@ public protocol Layout {
     /// The `AnchoredObject` that should be used to position this `Layout` amongst others.
     var boundary: AnchoredObject { get }
     
-    /// An array of sub-`Layout` objects that make up this `Layout`. These will be added to a `UIView` in the order they are given in this array in `addLayout(_:)`
+    /// An array of sub-`Layout` objects that make up this `Layout`. These will be added to a `UIView` in the order they are given in this array in `add(layout: _:)`
     var elements: [Layout] { get }
     
     /// The constraints required to internally position this `Layout`. These should be activated once the `elements` of this `Layout` has been added to a super view. You should remember to add the constraints of any child Layouts in `elements`.
@@ -25,7 +25,7 @@ public extension Layout {
     
     /// Convenience function returning the combined constraints for all of the `Layout`s in `elements`.
     public func elementConstraints() -> [NSLayoutConstraint] {
-        return elements.reduce([], combine: { $0 + $1.generateConstraints() })
+        return elements.reduce([], { $0 + $1.generateConstraints() })
     }
     
     /// Default implementation returning the `elementConstraints()`.

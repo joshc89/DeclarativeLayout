@@ -37,13 +37,13 @@ public struct ErrorLayout: Layout {
     public var error: Error? {
         didSet {
             label.text = error?.message
-            label.hidden = error?.message == nil
+            label.isHidden = error?.message == nil
             
             iconView.image = error?.icon
-            iconView.hidden = error?.icon == nil
+            iconView.isHidden = error?.icon == nil
             iconWidthConstraint.constant = error?.icon?.size.width ?? 0
             
-            errorStack.hidden = error == nil
+            errorStack.isHidden = error == nil
         }
     }
     
@@ -75,17 +75,17 @@ public struct ErrorLayout: Layout {
         self.child = child
         
         label.numberOfLines = 0
-        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
+        label.font = UIFont.preferredFont(forTextStyle: .caption1)
         
         errorStack = UIStackView(arrangedSubviews: [iconView, label])
         errorStack.spacing = 8.0
         
-        iconWidthConstraint = iconView.widthAnchor.constraintEqualToConstant(0)
+        iconWidthConstraint = iconView.widthAnchor.constraint(equalToConstant: 0)
         iconWidthConstraint.priority = 900
-        iconWidthConstraint.active = true
+        iconWidthConstraint.isActive = true
         
         stack = UIStackView(arrangedLayouts: [child, errorStack])
-        stack.axis = .Vertical
+        stack.axis = .vertical
         stack.spacing = 8.0
         
         UIView.useInAutoLayout([label, iconView, errorStack])
