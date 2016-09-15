@@ -51,7 +51,7 @@ class ExampleListViewController: UITableViewController {
         return viewControllerInfo.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: .Default, reuseIdentifier: "VCCell")
         
@@ -60,7 +60,7 @@ class ExampleListViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         
         let toShow = viewControllerInfo[indexPath.row].viewController
         self.showViewController(toShow, sender: self)

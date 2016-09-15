@@ -89,7 +89,7 @@ class ModelsViewController: UITableViewController {
             super.init(tableView: tableView, collection: collection)
         }
         
-        override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("CarModel") ?? UITableViewCell(style: .Subtitle, reuseIdentifier: "CarModel")
             

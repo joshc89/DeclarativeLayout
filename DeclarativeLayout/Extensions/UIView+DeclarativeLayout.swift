@@ -36,8 +36,9 @@ extension UIView: AnchoredObject {
      
      Adds each element to the hierarchy, calling `useInAutoLayout()` then activates the constraints for that `Layout`.
      
-     - returns: The constraints that were generated. If you want to dynamically de-activate and re-activate these constraints you should hold on to these.
+     - returns: The constraints that were generated. If you want to dynamically de-activate and re-activate these constraints you should hold on to these. They are a `discardableResult`.
     */
+    @discardableResult
     public func add(layout: Layout) -> [NSLayoutConstraint] {
         
         layout.useInAutoLayout()

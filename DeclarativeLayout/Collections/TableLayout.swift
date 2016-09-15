@@ -25,13 +25,6 @@ public class TableLayout<CollectionType: CollectionModel>: Layout {
         self.manager = dataSource
     }
     
-    convenience init(collection: CollectionType, style: UITableViewStyle = .Plain) {
-        
-        let tbv = UITableView(frame: CGRectZero, style: style)
-        let data = TableManager(tableView: tbv, collection: collection)
-        self.init(dataSource: data)
-    }
-    
     // MARK: Layout Conformance
     
     public var boundary: AnchoredObject {

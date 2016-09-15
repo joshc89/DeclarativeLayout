@@ -10,20 +10,20 @@ import Foundation
 
 public protocol DifferentiableCollectionModel: CollectionModel {
     
-    func indexPathForElement(element: Element) -> NSIndexPath?
+    // func indexPath(of: Element) -> IndexPath?
     
-    func modificationsBetween(collection: Self) -> CollectionModification
+    func modifications(toBecome: Self) -> CollectionModification
 }
 
 public struct CollectionModification {
     
-    let rowInsertions: [NSIndexPath]
+    let rowInsertions: [IndexPath]
     
-    let rowDeletions: [NSIndexPath]
+    let rowDeletions: [IndexPath]
     
-    let rowMoves: [(from: NSIndexPath, to: NSIndexPath)]
+    let rowMoves: [(from: IndexPath, to: IndexPath)]
     
-    let rowReloads: [NSIndexPath]
+    let rowReloads: [IndexPath]
     
     let sectionInsertions: NSIndexSet
     
@@ -33,10 +33,10 @@ public struct CollectionModification {
     
     let sectionReloads: NSIndexSet
     
-    public init(rowInsertions: [NSIndexPath] = [],
-                rowDeletions: [NSIndexPath] = [],
-                rowMoves: [(from: NSIndexPath, to: NSIndexPath)] = [],
-                rowReloads: [NSIndexPath] = [],
+    public init(rowInsertions: [IndexPath] = [],
+                rowDeletions: [IndexPath] = [],
+                rowMoves: [(from: IndexPath, to: IndexPath)] = [],
+                rowReloads: [IndexPath] = [],
                 sectionInsertions: NSIndexSet = NSIndexSet(),
                 sectionDeletions: NSIndexSet = NSIndexSet(),
                 sectionMoves: [(from: Int, to: Int)] = [],
@@ -61,16 +61,16 @@ public extension DifferentiableCollectionModel {
      let (mySections, myCounts) = self.counts()
      let (thierSections, theirCounts) = collection.counts()
      
-     var inserts = [[NSIndexPath]](minimumCapacity: totalSections)
+     var inserts = [[IndexPath]](minimumCapacity: totalSections)
      
      for (section, count) in counts.enumerate() {
-     let paths = (0..<count).map { NSIndexPath(forItem: $0, inSection: section) }
+     let paths = (0..<count).map { IndexPath(item: $0, section: section) }
      inserts.append(paths)
      }
      
-     var deletes = [NSIndexPath]()
-     var moves = [(from: NSIndexPath, to: NSIndexPath)]()
-     var reloads = [NSIndexPath]()
+     var deletes = [IndexPath]()
+     var moves = [(from: IndexPath, to: IndexPath)]()
+     var reloads = [IndexPath]()
      
      // calculate
      

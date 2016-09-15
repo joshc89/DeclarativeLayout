@@ -20,20 +20,20 @@ public struct Collection<SectionType: CollectionSection>: CollectionModel {
         return sections.count
     }
     
-    public func numberOfItemsInSection(section: Int) -> Int {
+    public func numberOfItems(in section: Int) -> Int {
         return sections[section].numberOfItems()
     }
     
-    public func titleForSection(section: Int) -> String? {
+    public func title(for section: Int) -> String? {
         return sections[section].sectionTitle
     }
     
-    public func indexTitleForSection(section: Int) -> String? {
+    public func indexTitle(for section: Int) -> String? {
         return sections[section].sectionIndexTitle
     }
     
-    public func itemAtIndexPath(indexPath: NSIndexPath) -> SectionType.Element {
-        return sections[indexPath.section].itemAtIndex(indexPath.row)
+    public func item(at indexPath: IndexPath) -> SectionType.Element {
+        return sections[indexPath.section].item(at: indexPath.row)
     }
 }
 
@@ -45,7 +45,7 @@ public struct ArraySection<Element>: CollectionSection {
     
     public let sectionIndexTitle: String?
     
-    public init(items: [Element], title: String?, indexTitle: String?) {
+    public init(title: String?, indexTitle: String?, items: [Element]) {
         self.items = items
         self.sectionTitle = title
         self.sectionIndexTitle = indexTitle
@@ -53,11 +53,9 @@ public struct ArraySection<Element>: CollectionSection {
     
     public func numberOfItems() -> Int{
         return items.count
-        
-        
     }
     
-    public func itemAtIndex(index: Int) -> Element {
+    public func item(at index: Int) -> Element {
         return items[index]
     }
 }

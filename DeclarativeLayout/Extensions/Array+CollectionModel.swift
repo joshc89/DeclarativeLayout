@@ -28,40 +28,11 @@ extension Array: CollectionSection {
         return count
     }
     
-    public func itemAtIndex(index: Int) -> Element {
-        return self[index]
+    public func item(at: Int) -> Element {
+        return self[at]
     }
     
 }
-
-// MARK: - CollectionModel Conformance
-
-/*
-extension Array: CollectionModel {
-    
-    // MARK: Single Section Collection
-    
-    public func numberOfSections() -> Int {
-        return 1
-    }
-    
-    public func numberOfItemsInSection(section: Int) -> Int {
-        return count
-    }
-    
-    public func itemAtIndexPath(indexPath: NSIndexPath) -> Element {
-        return self[indexPath.item]
-    }
-    
-    public func titleForSection(section: Int) -> String? {
-        return nil
-    }
-    
-    public func indexTitleForSection(section: Int) -> String? {
-        return nil
-    }
-}
-*/
 
 extension Array where Element: CollectionSection {
     
@@ -71,20 +42,20 @@ extension Array where Element: CollectionSection {
         return count
     }
     
-    public func numberOfItemsInSection(section: Int) -> Int {
+    public func numberOfItems(in section: Int) -> Int {
         
         return self[section].numberOfItems()
     }
     
-    public func itemAtIndexPath(indexPath: NSIndexPath) -> Element.Element {
-        return self[indexPath.section].itemAtIndex(indexPath.row)
+    public func item(at indexPath: IndexPath) -> Element.Element {
+        return self[indexPath.section].item(at: indexPath.row)
     }
     
-    public func titleForSection(section: Int) -> String? {
+    public func title(for section: Int) -> String? {
         return self[section].sectionTitle
     }
     
-    public func indexTitleForSection(section: Int) -> String? {
+    public func indexTitle(for section: Int) -> String? {
         return self[section].sectionIndexTitle
     }
 }

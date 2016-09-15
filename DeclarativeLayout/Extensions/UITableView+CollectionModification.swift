@@ -17,31 +17,31 @@ public extension UITableView {
             beginUpdates()
             
             if modifications.rowDeletions.count > 0 {
-                deleteRowsAtIndexPaths(modifications.rowDeletions, withRowAnimation: .Automatic)
+                deleteRows(at: modifications.rowDeletions, with: .automatic)
             }
             
             if modifications.rowInsertions.count > 0 {
-                insertRowsAtIndexPaths(modifications.rowInsertions, withRowAnimation: .Automatic)
+                insertRows(at: modifications.rowInsertions, with: .automatic)
             }
             
             if modifications.rowReloads.count > 0 {
-                reloadRowsAtIndexPaths(modifications.rowReloads, withRowAnimation: .Automatic)
+                reloadRows(at: modifications.rowReloads, with: .automatic)
             }
             
             for (from, to) in modifications.rowMoves {
-                moveRowAtIndexPath(from, toIndexPath: to)
+                moveRow(at: from, to: to)
             }
             
             if modifications.sectionInsertions.count > 0 {
-                insertSections(modifications.sectionInsertions, withRowAnimation: .Automatic)
+                insertSections(modifications.sectionInsertions as IndexSet, with: .automatic)
             }
             
             if modifications.sectionDeletions.count > 0 {
-                deleteSections(modifications.sectionDeletions, withRowAnimation: .Automatic)
+                deleteSections(modifications.sectionDeletions as IndexSet, with: .automatic)
             }
             
             if modifications.sectionReloads.count > 0 {
-                reloadSections(modifications.sectionReloads, withRowAnimation: .Automatic)
+                reloadSections(modifications.sectionReloads as IndexSet, with: .automatic)
             }
             
             for (from, to) in modifications.sectionMoves {

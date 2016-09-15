@@ -10,7 +10,7 @@ import Foundation
 
 public protocol Equivalent: Equatable {
     
-    func equivalentTo(to: Self) -> Bool
+    func equivalent(to: Self) -> Bool
     
 }
 
@@ -22,15 +22,15 @@ public protocol CollectionModel {
     
     func numberOfSections() -> Int
     
-    func numberOfItemsInSection(section: Int) -> Int
+    func numberOfItems(in: Int) -> Int
     
-    func itemAtIndexPath(indexPath: NSIndexPath) -> Element
+    func item(at: IndexPath) -> Element
     
     // MARK: Supplementary
     
-    func titleForSection(section: Int) -> String?
+    func title(for: Int) -> String?
     
-    func indexTitleForSection(section: Int) -> String?
+    func indexTitle(for: Int) -> String?
     
 }
 
@@ -40,7 +40,7 @@ public protocol CollectionSection {
     
     func numberOfItems() -> Int
     
-    func itemAtIndex(index: Int) -> Element
+    func item(at: Int) -> Element
     
     var sectionTitle: String? { get }
     
@@ -62,12 +62,20 @@ public extension CollectionContainer where Element == CollectionType.Element {
         return collection.numberOfSections()
     }
     
-    public func numberOfItemsInSection(section: Int) -> Int {
-        return collection.numberOfItemsInSection(section)
+    public func numberOfItems(in section: Int) -> Int {
+        return collection.numberOfItems(in: section)
     }
     
-    public func itemAtIndexPath(indexPath: NSIndexPath) -> Element {
-        return collection.itemAtIndexPath(indexPath)
+    public func item(at indexPath: IndexPath) -> Element {
+        return collection.item(at: indexPath)
+    }
+    
+    public func title(for section: Int) -> String? {
+        return collection.title(for: section)
+    }
+    
+    public func indexTitle(for section: Int) -> String? {
+        return collection.indexTitle(for: section)
     }
 }
 
@@ -77,7 +85,7 @@ public extension CollectionModel {
     public func counts() -> (totalSections: Int, sectionCounts: [Int]) {
         let totalSections = numberOfSections()
         let counts = (0..<totalSections)
-            .map { self.numberOfItemsInSection($0) }
+            .map { self.numberOfItems(in: $0) }
         
         return (totalSections, counts)
     }
