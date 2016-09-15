@@ -37,7 +37,7 @@ class InfoViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
-        view.addLayout(infoLayout)
+        view.add(layout: infoLayout)
         
         let centerConstraints = infoLayout.boundary.constraintsCenteringOn(view)
         view.addConstraints(centerConstraints)

@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let titleLayout = TitledLayout(title: "Hello, World!", subtitle: "This is a long description that should wrap onto multiple lines on smaller devices. Just centering this layout will lead to text overflowing the edge of the device")
-        view.addLayout(titleLayout)
+        view.add(layout: titleLayout)
         
         // centered title
         let centerConstraints = titleLayout.boundary.constraintsCenteringOn(view.layoutMarginsGuide, xBuffer: 0, yBuffer: 0)
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         /*
          // top positioned title
          let topConstraint = titleLayout.boundary.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor, constant: 8)
-         let edgeConstraints = titleLayout.boundary.constraintsAligningEdgesTo(view.layoutMarginsGuide)
+         let edgeConstraints = titleLayout.boundary.constraintsAligningEdges(to: view.layoutMarginsGuide)
          view.addConstraints([edgeConstraints[1], edgeConstraints[3], topConstraint])
          */
     }
@@ -62,7 +62,7 @@ class TitledViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         view.backgroundColor = UIColor.whiteColor()
-        view.addLayout(titleLayout)
+        view.add(layout: titleLayout)
         
         /*
         // centered title
@@ -73,7 +73,7 @@ class TitledViewController: UIViewController {
         
         // top positioned title
         let topConstraint = titleLayout.boundary.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor, constant: 8)
-        let edgeConstraints = titleLayout.boundary.constraintsAligningEdgesTo(view.layoutMarginsGuide)
+        let edgeConstraints = titleLayout.boundary.constraintsAligningEdges(to: view.layoutMarginsGuide)
         view.addConstraints([edgeConstraints[1], edgeConstraints[3], topConstraint])
     }
 

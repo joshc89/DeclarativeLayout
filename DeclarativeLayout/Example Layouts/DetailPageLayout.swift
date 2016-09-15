@@ -8,58 +8,48 @@
 
 import UIKit
 
-
-public struct DetailPageLayout: Layout {
+/// Adds Convenience initialiser for `ParallaxScrollLayout`.
+public extension ParallaxScrollLayout {
     
-    public let titleLayout: TitledLayout
+    // MARK: Convenience Initialisers
     
-    public let scrollContent: UIStackView
-    
-    public let parallaxScrollLayout: ParallaxScrollLayout
-    
-    public init(title:String?,
-         subtitle:String?,
-         backgroundLayout: Layout,
-         contentLayout: Layout,
-         withInsets: UIEdgeInsets = UIEdgeInsetsMake(16, 8, 16, 8),
-         maxWidth: CGFloat? = 667) {
+    /**
+     
+     Convenience initialiser stacking a `TitledLayout` with a given `contentLayout` nested inside a white view as the `foregroundLayout`. This is a common layout for a detail page such as an article.
+     
+     - parameter backgroundLayout: Set as the `backgroundLayout` property.
+     - parameter title: Set as the title in the `TitledLayout`.
+     - parameter subtitle: Set as the subtitle in the `TitledLayout`.
+     - parameter contentLayout: Stacked below the `TitledLayout`, this is the main point of customisation for this layout.
+     - parameter scrollContentEdge: The edge the stacked content should be aligned to within the scroll view. Default value is `.ReadableContent`.
+     - parameter withInsets: Extra inset to align the stacked content with the `scrollContentEdge`. Default value is zero.
+     
+    */
+    public convenience  init(backgroundLayout: Layout,
+                             title:String?,
+                             subtitle:String?,
+                             contentLayout: Layout,
+                             scrollContentEdge: UIView.Edge = .readableContent,
+                             withInsets: UIEdgeInsets = .zero) {
         
-        titleLayout = TitledLayout(title: title, subtitle: subtitle)
+        let titleLayout = TitledLayout(title: title, subtitle: subtitle)
         
-        scrollContent = UIStackView(arrangedLayouts: [titleLayout, contentLayout])
-        scrollContent.axis = .Vertical
+        let scrollContent = UIStackView(arrangedLayouts: [titleLayout, contentLayout])
+        scrollContent.axis = .vertical
         scrollContent.spacing = 16.0
+        scrollContent.translatesAutoresizingMaskIntoConstraints = false
         
-        // give the scroll content a white background
+        // give the scroll content a white background by nesting in a view.
         let scrollContentView = UIView()
-        scrollContentView.backgroundColor = UIColor.whiteColor()
+        scrollContentView.backgroundColor = UIColor.white
+        scrollContentView.preservesSuperviewLayoutMargins = true
         
-        if let width = maxWidth {
-            
-            let maxWidthLayout = MaxWidthLayout(child: scrollContent, maxWidth: width)
-            scrollContentView.addLayout(maxWidthLayout)
-            
-            // constrain the max width to the edges of the scroll view to give it contentSize
-            let contentConstraints = maxWidthLayout.boundary.constraintsAligningEdgesTo(scrollContentView.layoutMarginsGuide, withInsets: withInsets)
-            NSLayoutConstraint.activateConstraints(contentConstraints)
-            
-        } else {
-            scrollContentView.addSubview(scrollContent)
-            let contentConstraints = scrollContent.constraintsAligningEdgesTo(scrollContentView.layoutMarginsGuide, withInsets: withInsets)
-            NSLayoutConstraint.activateConstraints(contentConstraints)
-        }
+        scrollContentView.addSubview(scrollContent)
+        
+        let contentConstraints = scrollContent.constraintsAligningEdges(to: scrollContentView.anchorsForEdge(scrollContentEdge), withInsets: withInsets)
+        NSLayoutConstraint.activate(contentConstraints)
         
         // create the layout
-        parallaxScrollLayout = ParallaxScrollLayout(backgroundLayout: backgroundLayout, foregroundLayout: scrollContentView)
-    }
- 
-    // MARR: Layout Conformance
-    
-    public var boundary: AnchoredObject {
-        return parallaxScrollLayout.boundary
-    }
-    
-    public var elements: [Layout] {
-        return [parallaxScrollLayout]
+        self.init(backgroundLayout: backgroundLayout, foregroundLayout: scrollContentView)
     }
 }

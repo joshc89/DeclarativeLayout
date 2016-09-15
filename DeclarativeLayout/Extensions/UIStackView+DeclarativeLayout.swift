@@ -26,9 +26,9 @@ public extension UIStackView {
                 return view
             } else {
                 let container = UIView()
-                container.backgroundColor = UIColor.clearColor()
+                container.backgroundColor = UIColor.clear
                 container.translatesAutoresizingMaskIntoConstraints = false
-                container.addLayout(layout)
+                container.add(layout: layout)
                 
                 return container
             }

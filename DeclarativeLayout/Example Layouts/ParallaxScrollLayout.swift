@@ -37,7 +37,7 @@ public final class ParallaxScrollLayout: NSObject, Layout {
         didSet {
             if bouncesBackground != oldValue {
                 // recalculate the offset
-                scrollViewDidScroll(scrollView)
+                didScroll(view: scrollView)
             }
         }
     }
@@ -47,7 +47,7 @@ public final class ParallaxScrollLayout: NSObject, Layout {
         didSet {
             if scrollRate != oldValue {
                 // recalculate the offset
-                self.scrollViewDidScroll(scrollView)
+                didScroll(view: scrollView)
             }
         }
     }
@@ -61,42 +61,43 @@ public final class ParallaxScrollLayout: NSObject, Layout {
         backgroundSpaceGuide = UILayoutGuide()
         
         // configure the scroll view
-        scrollView.addLayout(backgroundLayout)
-        scrollView.addLayout(backgroundSpaceGuide)
-        scrollView.addLayout(foregroundLayout)
+        scrollView.preservesSuperviewLayoutMargins = true
+        scrollView.add(layout: backgroundLayout)
+        scrollView.add(layout: backgroundSpaceGuide)
+        scrollView.add(layout: foregroundLayout)
         
         scrollView.alwaysBounceVertical = true
         
         // create the internal constraints, some of which are properties so must be done before super.init
-        scrollView.widthAnchor.constraintEqualToAnchor(foregroundLayout.boundary.widthAnchor).active = true
+        scrollView.widthAnchor.constraint(equalTo: foregroundLayout.boundary.widthAnchor).isActive = true
         
-        backgroundSpaceGuide.heightAnchor.constraintEqualToAnchor(backgroundLayout.boundary.heightAnchor)
+        backgroundSpaceGuide.heightAnchor.constraint(equalTo: backgroundLayout.boundary.heightAnchor)
         
-        let gTop = backgroundSpaceGuide.topAnchor.constraintEqualToAnchor(scrollView.topAnchor)
-        let gBottom = backgroundSpaceGuide.bottomAnchor.constraintEqualToAnchor(foregroundLayout.boundary.topAnchor)
+        let gTop = backgroundSpaceGuide.topAnchor.constraint(equalTo: scrollView.topAnchor)
+        let gBottom = backgroundSpaceGuide.bottomAnchor.constraint(equalTo: foregroundLayout.boundary.topAnchor)
         
-        let gLeading = backgroundSpaceGuide.boundary.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor)
-        let gTrailing = backgroundSpaceGuide.boundary.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor)
+        let gLeading = backgroundSpaceGuide.boundary.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor)
+        let gTrailing = backgroundSpaceGuide.boundary.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
         
-        let gHeight = backgroundSpaceGuide.heightAnchor.constraintEqualToAnchor(backgroundLayout.boundary.heightAnchor)
+        let gHeight = backgroundSpaceGuide.heightAnchor.constraint(equalTo: backgroundLayout.boundary.heightAnchor)
         
-        let bLeading = backgroundLayout.boundary.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor)
-        let bTrailing = backgroundLayout.boundary.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor)
+        let bLeading = backgroundLayout.boundary.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor)
+        let bTrailing = backgroundLayout.boundary.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
         
-        connectingConstraint = backgroundLayout.boundary.bottomAnchor.constraintEqualToAnchor(foregroundLayout.boundary.topAnchor)
+        connectingConstraint = backgroundLayout.boundary.bottomAnchor.constraint(equalTo: foregroundLayout.boundary.topAnchor)
         
-        let fLeading = foregroundLayout.boundary.leadingAnchor.constraintEqualToAnchor(scrollView.leadingAnchor)
-        let fTrailing = foregroundLayout.boundary.trailingAnchor.constraintEqualToAnchor(scrollView.trailingAnchor)
-        let fBottom = foregroundLayout.boundary.bottomAnchor.constraintEqualToAnchor(scrollView.bottomAnchor)
+        let fLeading = foregroundLayout.boundary.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor)
+        let fTrailing = foregroundLayout.boundary.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+        let fBottom = foregroundLayout.boundary.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         
         let internalConstraints = [gTop, gBottom, gLeading, gTrailing, gHeight, bLeading, bTrailing, connectingConstraint, fLeading, fTrailing, fBottom].flatMap { $0 }
         
-        NSLayoutConstraint.activateConstraints(internalConstraints)
+        NSLayoutConstraint.activate(internalConstraints)
         
         super.init()
         
         // observe the offset to perform the scroll
-        scrollView.addObserver(self, forKeyPath: "contentOffset", options: [.Old, .New], context: nil)
+        scrollView.addObserver(self, forKeyPath: "contentOffset", options: [.old, .new], context: nil)
     }
     
     deinit {
@@ -106,17 +107,17 @@ public final class ParallaxScrollLayout: NSObject, Layout {
     // MARK: Parallax Scroll Methods
     
     /// Responds to observing the `contentOffset` of `scrollView` and `frame` changes of `backgroundLayout`.
-    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if let sv = object as? UIScrollView
-            where keyPath == "contentOffset" {
-            scrollViewDidScroll(sv)
+            , keyPath == "contentOffset" {
+            didScroll(view: sv)
         }
     }
     
     
     /// Implements the parallax scroll view by adjusting the constraint aligning the `backgroundLayout` top with `boundary`.
-    public func scrollViewDidScroll(scrollView:UIScrollView) {
+    public func didScroll(view:UIScrollView) {
         
         // implement parallax
         let offset = scrollView.contentOffset.y + scrollView.contentInset.top

@@ -22,7 +22,7 @@ extension UIView: AnchoredObject {
      
      - parameter AnchoredObject: The `UIView` or `UILayoutGuide` to add to the hierarchy. This allows for the interchangable use of the 2 types in creating a `Layout`.
     */
-    public func addAnchoredObject(anchoredObject: AnchoredObject) {
+    public func add(anchoredObject: AnchoredObject) {
         switch anchoredObject {
         case let view as UIView:
             addSubview(view)
@@ -38,20 +38,20 @@ extension UIView: AnchoredObject {
      
      - returns: The constraints that were generated. If you want to dynamically de-activate and re-activate these constraints you should hold on to these.
     */
-    public func addLayout(layout: Layout) -> [NSLayoutConstraint] {
+    public func add(layout: Layout) -> [NSLayoutConstraint] {
         
         layout.useInAutoLayout()
         
         for element in layout.elements {
             if let obj = layout as? AnchoredObject {
-                addAnchoredObject(obj)
+                add(anchoredObject: obj)
             } else {
-                addLayout(element)
+                add(layout: element)
             }
         }
         
         let toAdd = layout.generateConstraints()
-        NSLayoutConstraint.activateConstraints(toAdd)
+        NSLayoutConstraint.activate(toAdd)
         return toAdd
     }
 
@@ -61,7 +61,7 @@ extension UIView: AnchoredObject {
 public extension UIView {
     
     /// Sets all of the given views' `translatesAutoresizingMaskIntoConstraints` to `false`. When creating views programmatically this is set to `true` by default, which is inconvenient when creating UI programmatically using NSLayoutConstraints.
-    public class func useInAutoLayout(views:[UIView]) {
+    public class func useInAutoLayout(_ views:[UIView]) {
         views.forEach({ $0.translatesAutoresizingMaskIntoConstraints = false })
     }
     
@@ -80,8 +80,49 @@ extension UIView: Layout {
         return [self]
     }
     
-    /// There are no internal constraints need to configure this view.
+    /// There are no internal constraints needed to configure this view.
     public func generateConstraints() -> [NSLayoutConstraint] {
         return []
+    }
+}
+
+
+/// Extension of `UIView` enumerating the types of edge.
+public extension UIView {
+    
+    /**
+ 
+     Type enumerating the types of edges a view can align its content to. These can be passed in as a parameter to a `Layout` to allow the user to customise the layout within specific parameters.
+     
+     - seealso: `ParallaxScrollLayout`'s convenience initialisers. 
+ 
+    */
+    public enum Edge {
+        /// Represents the boundary of this view.
+        case bounds
+        /// Represents the `layoutMarginsGuide` of this view.
+        case layoutMargins
+        /// Represents the `readableContentGuide` of this view.
+        case readableContent
+    }
+    
+    /**
+     
+     Convenience method allowing access to a representation of `UIView.Edge`.
+     
+     - parameter edge: The type of edge requested.
+     - returns: either the views boundary (i.e. `self`), `layoutMarginsGuide` or `readableContentGuide`.
+    */
+    public func anchorsForEdge(_ edge: Edge) -> AnchoredObject {
+    
+        switch edge {
+        case .bounds:
+            return self
+        case .layoutMargins:
+            return layoutMarginsGuide
+        case .readableContent:
+            return readableContentGuide
+        }
+    
     }
 }

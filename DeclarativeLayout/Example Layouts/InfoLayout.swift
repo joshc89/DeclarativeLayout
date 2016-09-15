@@ -27,7 +27,7 @@ public struct InfoLayout: Layout {
     public let infoStack: UIStackView
     
     /// Button laid out behind `infoStack` to add action handling.
-    public let button = UIButton(type: .Custom)
+    public let button = UIButton(type: .custom)
     
     /**
      
@@ -41,22 +41,22 @@ public struct InfoLayout: Layout {
     public init(message:String?, image:UIImage?, maxWidth:CGFloat? = 280.0) {
                 
         textLabel.numberOfLines = 0
-        textLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-        textLabel.setContentCompressionResistancePriority(755, forAxis: .Vertical)
+        textLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        textLabel.setContentCompressionResistancePriority(755, for: .vertical)
         textLabel.text = message
         
         imageView.image = image
         
         infoStack = UIStackView(arrangedSubviews: [imageView, textLabel])
-        infoStack.axis = .Vertical
+        infoStack.axis = .vertical
         infoStack.spacing = 8.0
-        infoStack.alignment = .Center
-        infoStack.distribution = .EqualSpacing
+        infoStack.alignment = .center
+        infoStack.distribution = .equalSpacing
         
         UIView.useInAutoLayout([button, imageView, textLabel, infoStack])
         
         if let width = maxWidth {
-            button.widthAnchor.constraintLessThanOrEqualToConstant(width).active = true
+            button.widthAnchor.constraint(lessThanOrEqualToConstant: width).isActive = true
         }
         
         boundary = button
@@ -74,6 +74,6 @@ public struct InfoLayout: Layout {
     /// - returns: Constraints aligning the `button` and `infoStack` edges.
     public func generateConstraints() -> [NSLayoutConstraint] {
         
-        return infoStack.constraintsAligningEdgesTo(button)
+        return infoStack.constraintsAligningEdges(to: button)
     }
 }

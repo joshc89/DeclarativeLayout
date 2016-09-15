@@ -9,7 +9,7 @@
 import UIKit
 
 /// Simple `Layout` constraining the width of a child `Layout` to a maximum size. If the width of `child` would exceed that of `boundary` it is centered horizontally within `boundary`.
-public class MaxWidthLayout: Layout {
+public struct MaxWidthLayout: Layout {
     
     /// Maximum width `child` can take.
     public var maxWidth:CGFloat {
@@ -36,8 +36,8 @@ public class MaxWidthLayout: Layout {
         boundary = insetGuide
         elements = [insetGuide, child]
         
-        widthConstraint = child.boundary.widthAnchor.constraintLessThanOrEqualToConstant(maxWidth)
-        widthConstraint.active = true
+        widthConstraint = child.boundary.widthAnchor.constraint(lessThanOrEqualToConstant: maxWidth)
+        widthConstraint.isActive = true
     }
     
     // MARK: Layout Conformance
@@ -60,11 +60,11 @@ public class MaxWidthLayout: Layout {
             return elementConstraints()
         }
         
-        let edgeConstraints = child.boundary.constraintsAligningEdgesTo(guide)
+        let edgeConstraints = child.boundary.constraintsAligningEdges(to: guide)
         
-        let cX = child.boundary.centerXAnchor.constraintEqualToAnchor(guide.centerXAnchor)
+        let cX = child.boundary.centerXAnchor.constraint(equalTo: guide.centerXAnchor)
         
-        let leading = child.boundary.leadingAnchor.constraintGreaterThanOrEqualToAnchor(guide.leadingAnchor)
+        let leading = child.boundary.leadingAnchor.constraint(greaterThanOrEqualTo: guide.leadingAnchor)
         
         return [edgeConstraints[0], edgeConstraints[2], cX, leading]
     }
