@@ -18,6 +18,7 @@ public class AnyCollection<ElementType>: CollectionModel {
     private let _title: (Int) -> String?
     private let _indexTitle: (Int) -> String?
     
+    /// Initialiser taking any `CollectionModel`. This object stores the calls of given collection model to forward them, erasing the associate type in the `CollectionModel` protocol allowing `CollectionModel` properties that are generic only on the element type, not the collection type.
     public init<Injected: CollectionModel>(collection: Injected) where Injected.Element == ElementType {
         
         _numberOfSections = collection.numberOfSections
@@ -27,22 +28,29 @@ public class AnyCollection<ElementType>: CollectionModel {
         _indexTitle = collection.indexTitle
     }
     
+    /// MARK: CollectionModel Conformance
+    
+    /// `CollectionModel` conformance
     public func numberOfSections() -> Int {
         return _numberOfSections()
     }
     
+    /// `CollectionModel` conformance
     public func numberOfItems(in section: Int) -> Int {
         return _numberOfItems(section)
     }
     
+    /// `CollectionModel` conformance
     public func item(at: IndexPath) -> ElementType {
         return _item(at)
     }
     
+    /// `CollectionModel` conformance
     public func title(forSection: Int) -> String? {
         return _title(forSection)
     }
     
+    /// `CollectionModel` conformance
     public func indextitle(forSection: Int) -> String? {
         return _indexTitle(forSection)
     }
