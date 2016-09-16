@@ -60,7 +60,7 @@ open class TableManager<CollectionType: CollectionModel>: NSObject, UITableViewD
      - parameter animated: Flag unused in this class. See `DifferentiableTableManager` instead.
      
     */
-    public func update(to: CollectionType, animated: Bool) {
+    open func update(to: CollectionType, animated: Bool) {
         
         self.collection = to
         tableView.reloadData()
@@ -75,7 +75,7 @@ open class TableManager<CollectionType: CollectionModel>: NSObject, UITableViewD
      - returns: The `numberOfSections()` of `collection`.
      
      */
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         return collection.numberOfSections()
     }
     
@@ -86,7 +86,7 @@ open class TableManager<CollectionType: CollectionModel>: NSObject, UITableViewD
      - returns: The `numberOfItems(in:) collection`.
      
      */
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return collection.numberOfItems(in: section)
     }
@@ -98,7 +98,7 @@ open class TableManager<CollectionType: CollectionModel>: NSObject, UITableViewD
      - returns: The `title(for:) collection`.
      
      */
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         return collection.title(forSection: section)
     }
@@ -110,7 +110,7 @@ open class TableManager<CollectionType: CollectionModel>: NSObject, UITableViewD
      - returns: An resulting from `collection.indexTitle(for:)` on each section index. If an index title is missing for a section, `nil` is returned.
      
      */
-    public func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    open func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         
         let possibleTitles = (0..<collection.numberOfSections()).map { self.collection.indexTitle(forSection: $0) }
         
@@ -126,7 +126,7 @@ open class TableManager<CollectionType: CollectionModel>: NSObject, UITableViewD
      - returns: A `.default UITableViewCell`.
      
     */
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         return UITableViewCell(style: .default, reuseIdentifier: "CollectionCell")
     }

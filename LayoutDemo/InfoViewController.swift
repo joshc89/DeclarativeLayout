@@ -20,13 +20,13 @@ class InfoViewController: UIViewController {
         // create and configure the layout
         infoLayout = InfoLayout(message: message, image: image)
         
-        let tint = UIColor.blackColor().colorWithAlphaComponent(0.54)
+        let tint = UIColor.black.withAlphaComponent(0.54)
         infoLayout.textLabel.textColor = tint
         infoLayout.imageView.tintColor = tint
         
         super.init(nibName: nil, bundle: nil)
         
-        infoLayout.button.addTarget(self, action: #selector(InfoViewController.launchHelp), forControlEvents: .TouchUpInside)
+        infoLayout.button.addTarget(self, action: #selector(InfoViewController.launchHelp), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,7 +39,7 @@ class InfoViewController: UIViewController {
         view.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
         view.add(layout: infoLayout)
         
-        let centerConstraints = infoLayout.boundary.constraintsCenteringOn(view)
+        let centerConstraints = infoLayout.boundary.constraintsCentering(on: view)
         view.addConstraints(centerConstraints)
     }
     

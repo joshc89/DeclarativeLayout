@@ -50,6 +50,6 @@ public extension ParallaxScrollLayout {
         NSLayoutConstraint.activate(contentConstraints)
         
         // create the layout
-        self.init(backgroundLayout: backgroundLayout, foregroundLayout: scrollContentView)
+        self.init(background: backgroundLayout, foreground: scrollContentView)
     }
 }

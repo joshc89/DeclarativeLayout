@@ -31,7 +31,7 @@ extension CarManufacturer: CollectionSection {
      - returns: The first character from `name`.
      */
     var sectionIndexTitle: String? {
-        return name.substringToIndex(name.startIndex.advancedBy(1))
+        return name.substring(to: name.characters.index(name.startIndex, offsetBy: 1))
     }
     
     /**
@@ -50,12 +50,12 @@ extension CarManufacturer: CollectionSection {
      
      - returns: the `CarModel` at the given `index` in `models`.
      */
-    func itemAtIndex(index: Int) -> CarModel {
-        return models[index]
+    func item(at: Int) -> CarModel {
+        return models[at]
     }
 }
 
-/// Demo class for using the TableManager as a data source
+/// Demo class for using the TableManager as a data source on an existing table view
 class ModelsViewController: UITableViewController {
     
     /// 'ViewModel' for this view that is responsible for the logic behind creating the data for the table.
@@ -65,14 +65,13 @@ class ModelsViewController: UITableViewController {
     var manager: CarTableManager!
     
     
-    
     /// Default initialiser. Force loads the sections synchronously for this simple example.
     init() {
         
         // force the load as failure implies a problem with the json / bundle which represents a programmer error.
-        let carSections = try! loader.loadData()
-        let cars = Collection(sections: carSections)
-        super.init(style: .Plain)
+        let carSections = (try? loader.loadData()) ?? []
+        let cars = ArrayCollection(sections: carSections)
+        super.init(style: .plain)
         
         manager = CarTableManager(tableView: tableView, collection: cars)
     }
@@ -80,27 +79,22 @@ class ModelsViewController: UITableViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+// MARK: Data Source
+
+class CarTableManager: TableManager<ArrayCollection<CarManufacturer> > {
     
-    // MARK: Data Source
-    
-    class CarTableManager: TableManager<Collection<CarManufacturer>> {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        override init(tableView: UITableView, collection: Collection<CarManufacturer>) {
-            super.init(tableView: tableView, collection: collection)
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CarModel") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "CarModel")
         
-        override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier("CarModel") ?? UITableViewCell(style: .Subtitle, reuseIdentifier: "CarModel")
-            
-            let model = self.collection.itemAtIndexPath(indexPath)
-            
-            cell.textLabel?.text = model.name
-            cell.detailTextLabel?.text = model.basePrice
-            
-            return cell
-        }
+        let model = collection.item(at: indexPath)
         
+        cell.textLabel?.text = model.name
+        cell.detailTextLabel?.text = model.basePrice
         
+        return cell
     }
 }
+

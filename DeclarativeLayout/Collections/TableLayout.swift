@@ -14,12 +14,12 @@ public class TableLayout<CollectionType: CollectionModel>: Layout {
     // MARK: Properties
     
     /// Convenience accessor for the `tableView` of `manager`.
-    var tableView: UITableView {
+    public var tableView: UITableView {
         return manager.tableView
     }
     
     /// The object that is managing this table.
-    let manager: TableManager<CollectionType>
+    public let manager: TableManager<CollectionType>
     
     // MARK: Initialisers
     

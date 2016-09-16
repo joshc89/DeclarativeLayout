@@ -43,6 +43,10 @@ extension UIView: AnchoredObject {
         
         layout.useInAutoLayout()
         
+        if let obj = layout as? AnchoredObject {
+            add(anchoredObject: obj)
+        }
+        
         for element in layout.elements {
             if let obj = layout as? AnchoredObject {
                 add(anchoredObject: obj)
@@ -51,11 +55,10 @@ extension UIView: AnchoredObject {
             }
         }
         
-        let toAdd = layout.generateConstraints()
+        let toAdd = layout.combinedConstraints()
         NSLayoutConstraint.activate(toAdd)
         return toAdd
     }
-
 }
 
 // MARK: Convenience Methods
@@ -78,11 +81,6 @@ extension UIView: Layout {
     
     /// The only element is `self` as this view represents the entire layout.
     public var elements: [Layout] {
-        return [self]
-    }
-    
-    /// There are no internal constraints needed to configure this view.
-    public func generateConstraints() -> [NSLayoutConstraint] {
         return []
     }
 }

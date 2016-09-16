@@ -54,7 +54,8 @@
 		A59E118F1D3E056F00EB725B /* DetailPageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E118E1D3E056F00EB725B /* DetailPageLayout.swift */; };
 		A5A8A5171D57A624009A0B48 /* UITableView+CollectionModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A8A5161D57A624009A0B48 /* UITableView+CollectionModification.swift */; };
 		A5A8A5191D57A6D1009A0B48 /* ArrayCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A8A5181D57A6D1009A0B48 /* ArrayCollection.swift */; };
-		A5A8A51B1D57A9A1009A0B48 /* CarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A8A51A1D57A9A1009A0B48 /* CarTableViewController.swift */; };
+		D64E92981D8C0487009FB28A /* AsyncModelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64E92971D8C0487009FB28A /* AsyncModelsViewController.swift */; };
+		D64E929A1D8C0520009FB28A /* LoadingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64E92991D8C0520009FB28A /* LoadingLayout.swift */; };
 		D66EA78E1D8A8D2500FF66AA /* UIStackView+DeclarativeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66EA78D1D8A8D2500FF66AA /* UIStackView+DeclarativeLayout.swift */; };
 		D6BE07291D8B0934002AD3AA /* AnyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE07281D8B0934002AD3AA /* AnyCollection.swift */; };
 		D6BE072B1D8B1853002AD3AA /* CollectionModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE072A1D8B1853002AD3AA /* CollectionModelTests.swift */; };
@@ -164,7 +165,8 @@
 		A59E118E1D3E056F00EB725B /* DetailPageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailPageLayout.swift; path = "Example Layouts/DetailPageLayout.swift"; sourceTree = "<group>"; };
 		A5A8A5161D57A624009A0B48 /* UITableView+CollectionModification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+CollectionModification.swift"; path = "Extensions/UITableView+CollectionModification.swift"; sourceTree = "<group>"; };
 		A5A8A5181D57A6D1009A0B48 /* ArrayCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayCollection.swift; path = Collections/ArrayCollection.swift; sourceTree = "<group>"; };
-		A5A8A51A1D57A9A1009A0B48 /* CarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarTableViewController.swift; sourceTree = "<group>"; };
+		D64E92971D8C0487009FB28A /* AsyncModelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncModelsViewController.swift; sourceTree = "<group>"; };
+		D64E92991D8C0520009FB28A /* LoadingLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingLayout.swift; sourceTree = "<group>"; };
 		D66EA78D1D8A8D2500FF66AA /* UIStackView+DeclarativeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView+DeclarativeLayout.swift"; path = "Extensions/UIStackView+DeclarativeLayout.swift"; sourceTree = "<group>"; };
 		D6BE07281D8B0934002AD3AA /* AnyCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyCollection.swift; path = Collections/AnyCollection.swift; sourceTree = "<group>"; };
 		D6BE072A1D8B1853002AD3AA /* CollectionModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionModelTests.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				A510C7CD1D607477004E5F21 /* AppDelegate.swift */,
 				A510C7CF1D607477004E5F21 /* ViewController.swift */,
 				A510C7E41D6074ED004E5F21 /* ModelsViewController.swift */,
+				D64E92971D8C0487009FB28A /* AsyncModelsViewController.swift */,
 				A510C7E61D60786F004E5F21 /* CarLoader.swift */,
 				A510C7E81D6078A4004E5F21 /* CarModel.swift */,
 				A510C7D11D607477004E5F21 /* Main.storyboard */,
@@ -248,7 +251,6 @@
 				A539F8661D3B710A0069A2B6 /* InfoViewController.swift */,
 				A539F86F1D3BD0140069A2B6 /* ErrorViewController.swift */,
 				A570C13A1D3BDA4B00138C3A /* ArticleViewController.swift */,
-				A5A8A51A1D57A9A1009A0B48 /* CarTableViewController.swift */,
 				A570C13C1D3BDB0A00138C3A /* Article.html */,
 				A539F85A1D3B6B430069A2B6 /* Main.storyboard */,
 				A539F85D1D3B6B430069A2B6 /* Assets.xcassets */,
@@ -341,6 +343,7 @@
 				A59A05D91D39377800E6B652 /* ParallaxScrollLayout.swift */,
 				A59E118E1D3E056F00EB725B /* DetailPageLayout.swift */,
 				A52DF94C1D4613EB00ED8DE9 /* DLViewController.swift */,
+				D64E92991D8C0520009FB28A /* LoadingLayout.swift */,
 			);
 			name = "Example Layouts";
 			sourceTree = "<group>";
@@ -445,9 +448,11 @@
 				TargetAttributes = {
 					A510C7CA1D607477004E5F21 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					A539F8531D3B6B430069A2B6 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					A59A05851D39130C00E6B652 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -525,6 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A510C7D01D607477004E5F21 /* ViewController.swift in Sources */,
+				D64E92981D8C0487009FB28A /* AsyncModelsViewController.swift in Sources */,
 				A510C7E91D6078A4004E5F21 /* CarModel.swift in Sources */,
 				A510C7CE1D607477004E5F21 /* AppDelegate.swift in Sources */,
 				A510C7E51D6074ED004E5F21 /* ModelsViewController.swift in Sources */,
@@ -536,7 +542,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5A8A51B1D57A9A1009A0B48 /* CarTableViewController.swift in Sources */,
 				A539F8701D3BD0140069A2B6 /* ErrorViewController.swift in Sources */,
 				A570C13B1D3BDA4B00138C3A /* ArticleViewController.swift in Sources */,
 				A539F8591D3B6B430069A2B6 /* TitledViewController.swift in Sources */,
@@ -559,6 +564,7 @@
 				A50145431D4659AC003EC7DD /* Array+CollectionModel.swift in Sources */,
 				D66EA78E1D8A8D2500FF66AA /* UIStackView+DeclarativeLayout.swift in Sources */,
 				A59E118F1D3E056F00EB725B /* DetailPageLayout.swift in Sources */,
+				D64E929A1D8C0520009FB28A /* LoadingLayout.swift in Sources */,
 				A59A05CC1D39148400E6B652 /* UIView+DeclarativeLayout.swift in Sources */,
 				A59A05D61D39151000E6B652 /* ErrorLayout.swift in Sources */,
 				A59A05D81D392CDA00E6B652 /* InsetLayout.swift in Sources */,
@@ -654,6 +660,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joshcampion.CarCollections;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -666,6 +673,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joshcampion.CarCollections;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -678,6 +686,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joshcampion.LayoutDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -690,6 +699,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.joshcampion.LayoutDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

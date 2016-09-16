@@ -15,7 +15,7 @@ struct Article {
     
     let image: UIImage?
     let title: String
-    let date: NSDate
+    let date: Date
     let bodyHTML: String
 }
 
@@ -24,30 +24,31 @@ class ArticleViewController: DLViewController {
     init(article:Article) {
         
         // create the foreground content for the scroll layout
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeStyle = .NoStyle
-        dateFormatter.dateStyle = .MediumStyle
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .medium
         
-        let dateString = dateFormatter.stringFromDate(article.date)
+        let dateString = dateFormatter.string(from: article.date)
         
         // create a text view containing the NSAttributedString representing the html
-        let articleData = article.bodyHTML.dataUsingEncoding(NSUTF8StringEncoding)
-        let articleBody = try? NSAttributedString(data: articleData ?? NSData(),
-                                                  options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding],
+        let articleData = article.bodyHTML.data(using: String.Encoding.utf8)
+        
+        let articleBody = try? NSAttributedString(data: articleData ?? Data(),
+                                                  options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
                                                   documentAttributes: nil)
         
         
         let articleView = UITextView()
         articleView.attributedText = articleBody
         articleView.textContainer.lineFragmentPadding = 0;
-        articleView.textContainerInset = UIEdgeInsetsZero
-        articleView.scrollEnabled = false
-        articleView.editable = false
-        articleView.selectable = true
+        articleView.textContainerInset = UIEdgeInsets.zero
+        articleView.isScrollEnabled = false
+        articleView.isEditable = false
+        articleView.isSelectable = true
         
         // create the background content for the scroll layout
         let background = UIImageView(image: article.image)
-        background.contentMode = .ScaleAspectFit
+        background.contentMode = .scaleAspectFit
         
         let articleLayout = ParallaxScrollLayout(backgroundLayout: background,
                                                  title: article.title,

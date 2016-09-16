@@ -12,7 +12,7 @@ struct CarManufacturer {
     
     let name: String
     
-    let logoURL: NSURL?
+    let logoURL: URL?
     
     let models: [CarModel]
 }
@@ -29,7 +29,7 @@ extension CarManufacturer {
         
         let models = logoModels.flatMap { CarModel(json: $0) }
         
-        let url = (json["logo_url"] as? String).flatMap { NSURL(string: $0) }
+        let url = (json["logo_url"] as? String).flatMap { URL(string: $0) }
         
         self.init(name: name, logoURL: url, models: models)
     }
@@ -39,7 +39,7 @@ extension CarManufacturer {
 struct CarModel {
     
     let name: String
-    let thumbnailURL: NSURL?
+    let thumbnailURL: URL?
     let basePrice: String
     
 }
@@ -54,7 +54,7 @@ extension CarModel {
                 return nil
         }
         
-        let url = (json["thumbnail_url"] as? String).flatMap { NSURL(string: $0) }
+        let url = (json["thumbnail_url"] as? String).flatMap { URL(string: $0) }
         
         self.init(name: name, thumbnailURL: url, basePrice: price)
     }

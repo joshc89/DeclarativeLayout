@@ -18,23 +18,39 @@ public protocol Layout {
     var elements: [Layout] { get }
     
     /// The constraints required to internally position this `Layout`. These should be activated once the `elements` of this `Layout` has been added to a super view. You should remember to add the constraints of any child Layouts in `elements`.
-    func generateConstraints() -> [NSLayoutConstraint]
+    var constraints: [NSLayoutConstraint] { get }
 }
 
 public extension Layout {
     
-    /// Convenience function returning the combined constraints for all of the `Layout`s in `elements`.
-    public func elementConstraints() -> [NSLayoutConstraint] {
-        return elements.reduce([], { $0 + $1.generateConstraints() })
+    /// Sets all of the nested `UIView`s' `isHidden` property. 
+    public func hide(_ isHidden: Bool) {
+        
+        if let view = self as? UIView {
+            view.isHidden = isHidden
+        }
+        
+        for layout in elements {
+            layout.hide(isHidden)
+        }
     }
     
-    /// Default implementation returning the `elementConstraints()`.
-    public func generateConstraints() -> [NSLayoutConstraint] {
-        return elementConstraints()
+    var constraints: [NSLayoutConstraint] {
+        return []
+    }
+    
+    /// Convenience function returning the `constraints` for laying out `self` and all of the `constraints` for each `Layout` in `elements`, recursively generating them for all children.
+    public func combinedConstraints() -> [NSLayoutConstraint] {
+        return self.constraints + elements.reduce([], { $0 + $1.combinedConstraints() })
     }
     
     /// Recursive function updating all the child `UIView`s in `elements` to have `translatesAutoresizingMaskIntoConstraints` to `false`.
     public func useInAutoLayout() {
+        
+        if let view = self as? UIView {
+            view.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
         for layout in elements {
             if let view = layout as? UIView {
                 view.translatesAutoresizingMaskIntoConstraints = false

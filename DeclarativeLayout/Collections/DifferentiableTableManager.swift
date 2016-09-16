@@ -23,7 +23,7 @@ open class DifferentiableTableManager<DifferentiableType: DifferentiableCollecti
      - seealso: `tableView.apply(modifications:animated:)`
      
      */
-    public override func update(to: DifferentiableType, animated: Bool) {
+    open override func update(to: DifferentiableType, animated: Bool) {
         let modifications = collection.modifications(toBecome: to)
         self.collection = to
         tableView.apply(modifications: modifications, animated: animated)
