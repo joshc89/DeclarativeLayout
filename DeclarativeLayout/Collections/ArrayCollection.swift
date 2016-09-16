@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Collection<SectionType: CollectionSection>: CollectionModel {
+
+public struct ArrayCollection<SectionType: CollectionSection>: CollectionModel {
     
     public let sections: [SectionType]
     
@@ -24,12 +25,12 @@ public struct Collection<SectionType: CollectionSection>: CollectionModel {
         return sections[section].numberOfItems()
     }
     
-    public func title(for section: Int) -> String? {
-        return sections[section].sectionTitle
+    public func title(forSection: Int) -> String? {
+        return sections[forSection].sectionTitle
     }
     
-    public func indexTitle(for section: Int) -> String? {
-        return sections[section].sectionIndexTitle
+    public func indextitle(forSection: Int) -> String? {
+        return sections[forSection].sectionIndexTitle
     }
     
     public func item(at indexPath: IndexPath) -> SectionType.Element {

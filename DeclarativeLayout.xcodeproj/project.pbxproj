@@ -56,8 +56,12 @@
 		A5A8A5191D57A6D1009A0B48 /* ArrayCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A8A5181D57A6D1009A0B48 /* ArrayCollection.swift */; };
 		A5A8A51B1D57A9A1009A0B48 /* CarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A8A51A1D57A9A1009A0B48 /* CarTableViewController.swift */; };
 		D66EA78E1D8A8D2500FF66AA /* UIStackView+DeclarativeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66EA78D1D8A8D2500FF66AA /* UIStackView+DeclarativeLayout.swift */; };
-		D6BE07291D8B0934002AD3AA /* AnyDifferentiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE07281D8B0934002AD3AA /* AnyDifferentiable.swift */; };
+		D6BE07291D8B0934002AD3AA /* AnyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE07281D8B0934002AD3AA /* AnyCollection.swift */; };
 		D6BE072B1D8B1853002AD3AA /* CollectionModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE072A1D8B1853002AD3AA /* CollectionModelTests.swift */; };
+		D6BE072D1D8BD26B002AD3AA /* DifferentiableTableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE072C1D8BD26B002AD3AA /* DifferentiableTableManager.swift */; };
+		D6BE072F1D8BD5FB002AD3AA /* CollectionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE072E1D8BD5FB002AD3AA /* CollectionContainer.swift */; };
+		D6BE07311D8BD7D2002AD3AA /* CollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE07301D8BD7D2002AD3AA /* CollectionSection.swift */; };
+		D6BE07331D8BDCCE002AD3AA /* CollectionModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE07321D8BDCCE002AD3AA /* CollectionModification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,8 +166,12 @@
 		A5A8A5181D57A6D1009A0B48 /* ArrayCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayCollection.swift; path = Collections/ArrayCollection.swift; sourceTree = "<group>"; };
 		A5A8A51A1D57A9A1009A0B48 /* CarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarTableViewController.swift; sourceTree = "<group>"; };
 		D66EA78D1D8A8D2500FF66AA /* UIStackView+DeclarativeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView+DeclarativeLayout.swift"; path = "Extensions/UIStackView+DeclarativeLayout.swift"; sourceTree = "<group>"; };
-		D6BE07281D8B0934002AD3AA /* AnyDifferentiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyDifferentiable.swift; path = Collections/AnyDifferentiable.swift; sourceTree = "<group>"; };
+		D6BE07281D8B0934002AD3AA /* AnyCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyCollection.swift; path = Collections/AnyCollection.swift; sourceTree = "<group>"; };
 		D6BE072A1D8B1853002AD3AA /* CollectionModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionModelTests.swift; sourceTree = "<group>"; };
+		D6BE072C1D8BD26B002AD3AA /* DifferentiableTableManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DifferentiableTableManager.swift; path = Collections/DifferentiableTableManager.swift; sourceTree = "<group>"; };
+		D6BE072E1D8BD5FB002AD3AA /* CollectionContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionContainer.swift; path = Protocols/CollectionContainer.swift; sourceTree = "<group>"; };
+		D6BE07301D8BD7D2002AD3AA /* CollectionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionSection.swift; path = Protocols/CollectionSection.swift; sourceTree = "<group>"; };
+		D6BE07321D8BDCCE002AD3AA /* CollectionModification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionModification.swift; path = Collections/CollectionModification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,9 +213,11 @@
 			isa = PBXGroup;
 			children = (
 				A50145461D465E9C003EC7DD /* TableManager.swift */,
+				D6BE072C1D8BD26B002AD3AA /* DifferentiableTableManager.swift */,
 				A510C7A91D6062A4004E5F21 /* TableLayout.swift */,
 				A5A8A5181D57A6D1009A0B48 /* ArrayCollection.swift */,
-				D6BE07281D8B0934002AD3AA /* AnyDifferentiable.swift */,
+				D6BE07281D8B0934002AD3AA /* AnyCollection.swift */,
+				D6BE07321D8BDCCE002AD3AA /* CollectionModification.swift */,
 			);
 			name = Collections;
 			sourceTree = "<group>";
@@ -300,6 +310,8 @@
 				A59A05C71D39143200E6B652 /* Layout.swift */,
 				A50145401D465845003EC7DD /* CollectionModel.swift */,
 				A510C7AD1D607007004E5F21 /* DifferentiableCollectionModel.swift */,
+				D6BE072E1D8BD5FB002AD3AA /* CollectionContainer.swift */,
+				D6BE07301D8BD7D2002AD3AA /* CollectionSection.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -551,13 +563,17 @@
 				A59A05D61D39151000E6B652 /* ErrorLayout.swift in Sources */,
 				A59A05D81D392CDA00E6B652 /* InsetLayout.swift in Sources */,
 				A59A05C81D39143200E6B652 /* Layout.swift in Sources */,
-				D6BE07291D8B0934002AD3AA /* AnyDifferentiable.swift in Sources */,
+				D6BE07291D8B0934002AD3AA /* AnyCollection.swift in Sources */,
+				D6BE072F1D8BD5FB002AD3AA /* CollectionContainer.swift in Sources */,
 				A59A05DA1D39377800E6B652 /* ParallaxScrollLayout.swift in Sources */,
 				A5A8A5171D57A624009A0B48 /* UITableView+CollectionModification.swift in Sources */,
 				A510C7AA1D6062A4004E5F21 /* TableLayout.swift in Sources */,
+				D6BE07331D8BDCCE002AD3AA /* CollectionModification.swift in Sources */,
 				A59A05CE1D3914A000E6B652 /* UILayoutGuide+DeclarativeLayout.swift in Sources */,
+				D6BE07311D8BD7D2002AD3AA /* CollectionSection.swift in Sources */,
 				A50145451D465BDB003EC7DD /* NSFetchedResultsController+CollectionModel.swift in Sources */,
 				A59A05DC1D3937CA00E6B652 /* MaxWidthLayout.swift in Sources */,
+				D6BE072D1D8BD26B002AD3AA /* DifferentiableTableManager.swift in Sources */,
 				A5A8A5191D57A6D1009A0B48 /* ArrayCollection.swift in Sources */,
 				A59A05D41D3914F700E6B652 /* InfoLayout.swift in Sources */,
 				A510C7B01D607316004E5F21 /* Array+DifferentiableCollectionModel.swift in Sources */,

@@ -8,53 +8,28 @@
 
 import Foundation
 
+public protocol Equivalent: Equatable {
+    func equivalent(to: Self) -> Bool
+}
+
+/// Protocol defining the requires of a `CollectionModel` that can calculate a `CollectionModel` between itself and another object of the same type.
 public protocol DifferentiableCollectionModel: CollectionModel {
     
     // func indexPath(of: Element) -> IndexPath?
     
+    /// Should calculate and return the `CollectionModification` that when applied to self, would result in `toBecome`.
     func modifications(toBecome: Self) -> CollectionModification
 }
 
-public struct CollectionModification {
-    
-    let rowInsertions: [IndexPath]
-    
-    let rowDeletions: [IndexPath]
-    
-    let rowMoves: [(from: IndexPath, to: IndexPath)]
-    
-    let rowReloads: [IndexPath]
-    
-    let sectionInsertions: NSIndexSet
-    
-    let sectionDeletions: NSIndexSet
-    
-    let sectionMoves: [(from: Int, to: Int)]
-    
-    let sectionReloads: NSIndexSet
-    
-    public init(rowInsertions: [IndexPath] = [],
-                rowDeletions: [IndexPath] = [],
-                rowMoves: [(from: IndexPath, to: IndexPath)] = [],
-                rowReloads: [IndexPath] = [],
-                sectionInsertions: NSIndexSet = NSIndexSet(),
-                sectionDeletions: NSIndexSet = NSIndexSet(),
-                sectionMoves: [(from: Int, to: Int)] = [],
-                sectionReloads: NSIndexSet = NSIndexSet()) {
-        
-        self.rowInsertions = rowInsertions
-        self.rowDeletions = rowDeletions
-        self.rowMoves = rowMoves
-        self.rowReloads = rowReloads
-        
-        self.sectionInsertions = sectionInsertions
-        self.sectionDeletions = sectionDeletions
-        self.sectionMoves = sectionMoves
-        self.sectionReloads = sectionReloads
-    }
-}
-
 public extension DifferentiableCollectionModel {
+    
+    // for sections & rows:
+    
+    // calculate insertions
+    // calculate deletions
+    // calculate moves
+    // calculate reloads
+    
     /*
      func modificationsBetween<CollectionType: CollectionModel where CollectionType.Element == Element>(collection: CollectionType) -> CollectionModification {
      

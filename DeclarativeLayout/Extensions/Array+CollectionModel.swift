@@ -51,11 +51,11 @@ extension Array where Element: CollectionSection {
         return self[indexPath.section].item(at: indexPath.row)
     }
     
-    public func title(for section: Int) -> String? {
-        return self[section].sectionTitle
+    public func title(forSection: Int) -> String? {
+        return self[forSection].sectionTitle
     }
     
-    public func indexTitle(for section: Int) -> String? {
-        return self[section].sectionIndexTitle
+    public func indextitle(forSection: Int) -> String? {
+        return self[forSection].sectionIndexTitle
     }
 }

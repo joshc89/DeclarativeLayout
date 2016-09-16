@@ -37,9 +37,9 @@ class CollectionModelTests: XCTestCase {
         ]
         
         let manager = PhraseTableManager(tableView: UITableView(),
-                                   collection: Collection(sections: strings))
+                                   collection: ArrayCollection(sections: strings))
         let layout = TableLayout(dataSource: manager)
-        let tableVC = DLViewController(layout: layout)
+        let _ = DLViewController(layout: layout)
     }
 }
 

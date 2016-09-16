@@ -27,12 +27,12 @@ extension NSFetchedResultsController { // : CollectionModel {
         return object(at: indexPath)
     }
 
-    public func title(for section: Int) -> String? {
-        return self.sections?[section].name
+    public func title(forSection: Int) -> String? {
+        return self.sections?[forSection].name
     }
 
-    public func indexTitle(for section: Int) -> String? {
-        return self.sections?[section].indexTitle
+    public func indextitle(forSection: Int) -> String? {
+        return self.sections?[forSection].indexTitle
     }
 
 }

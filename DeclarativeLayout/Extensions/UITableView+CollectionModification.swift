@@ -10,7 +10,7 @@ import UIKit
 
 public extension UITableView {
     
-    public func applyModification(modifications: CollectionModification, animated: Bool) {
+    public func apply(modifications: CollectionModification, animated: Bool) {
         
         if animated {
             

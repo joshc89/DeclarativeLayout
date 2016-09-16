@@ -1,5 +1,5 @@
 //
-//  AnyDifferentiable.swift
+//  AnyCollection.swift
 //  DeclarativeLayout
 //
 //  Created by Joshua Campion on 15/09/2016.
@@ -39,12 +39,12 @@ public class AnyCollection<ElementType>: CollectionModel {
         return _item(at)
     }
     
-    public func title(for section: Int) -> String? {
-        return _title(section)
+    public func title(forSection: Int) -> String? {
+        return _title(forSection)
     }
     
-    public func indexTitle(for section: Int) -> String? {
-        return _indexTitle(section)
+    public func indextitle(forSection: Int) -> String? {
+        return _indexTitle(forSection)
     }
 }
 
