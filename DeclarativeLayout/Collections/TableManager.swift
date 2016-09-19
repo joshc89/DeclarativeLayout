@@ -28,7 +28,7 @@ open class TableManager<CollectionType: CollectionModel>: NSObject, UITableViewD
     public let tableView: UITableView
     
     /// It is recommended that only subclasses set this variable. Use `update(to:animated)` to provide new data instead.
-    public var collection: CollectionType
+    open var collection: CollectionType
     
     /**
      
@@ -107,7 +107,7 @@ open class TableManager<CollectionType: CollectionModel>: NSObject, UITableViewD
      
      `UITableViewDataSource` conformance.
      
-     - returns: An resulting from `collection.indexTitle(for:)` on each section index. If an index title is missing for a section, `nil` is returned.
+     - returns: An array resulting from `collection.indexTitle(for:)` for each section index. If an index title is missing for a section, `nil` is returned.
      
      */
     open func sectionIndexTitles(for tableView: UITableView) -> [String]? {

@@ -10,6 +10,14 @@ import UIKit
 
 public extension UITableView {
     
+    /**
+     
+     Convenience method for applying a modification to a `UITableView` collating all the changes between calls to `beginUpdates()` and `endUpdates()`.
+     
+     - parameter modifications: The changes to apply to the table.
+     - parameter animated: If `true`, the changes are made using `.automatic` animation style. If `false`, the changes are made using `reloadData()`.
+     
+    */
     public func apply(modifications: CollectionModification, animated: Bool) {
         
         if animated {
@@ -33,15 +41,15 @@ public extension UITableView {
             }
             
             if modifications.sectionInsertions.count > 0 {
-                insertSections(modifications.sectionInsertions as IndexSet, with: .automatic)
+                insertSections(modifications.sectionInsertions, with: .automatic)
             }
             
             if modifications.sectionDeletions.count > 0 {
-                deleteSections(modifications.sectionDeletions as IndexSet, with: .automatic)
+                deleteSections(modifications.sectionDeletions, with: .automatic)
             }
             
             if modifications.sectionReloads.count > 0 {
-                reloadSections(modifications.sectionReloads as IndexSet, with: .automatic)
+                reloadSections(modifications.sectionReloads, with: .automatic)
             }
             
             for (from, to) in modifications.sectionMoves {

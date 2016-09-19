@@ -19,8 +19,6 @@ class AsyncModelsViewController: DLViewController {
     /// The main layout displaying the content of this view.
     let tableLayout: TableLayout<ArrayCollection<CarManufacturer> >
     
-    
-    
     /// Used to show a spinner during loading
     let spinner: UIActivityIndicatorView = {
        
