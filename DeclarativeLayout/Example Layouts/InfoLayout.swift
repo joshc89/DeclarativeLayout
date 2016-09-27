@@ -68,7 +68,7 @@ public struct InfoLayout: Layout {
         
         infoStack = UIStackView(arrangedSubviews: [imageView, textLabel])
         infoStack.axis = .vertical
-        infoStack.spacing = 8.0
+        infoStack.spacing = 4.0
         infoStack.alignment = .center
         infoStack.distribution = .equalSpacing
         

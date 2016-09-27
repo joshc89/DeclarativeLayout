@@ -27,6 +27,11 @@ public extension Layout {
     public func hide(_ isHidden: Bool) {
         
         if let view = self as? UIView {
+            print("hiding \(isHidden ? "Y" : "N"): \(view)")
+            
+            if let stack = view as? UIStackView {
+                print(stack.arrangedSubviews.map { "\t\($0.isHidden)" })
+            }
             view.isHidden = isHidden
         }
         

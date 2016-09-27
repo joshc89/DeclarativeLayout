@@ -18,7 +18,7 @@ More example `Layout`s are given within the framework. Download the repo to chec
 
   s.requires_arc          = true
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files          = 'DeclarativeLayout/**/*.swift'
 end
