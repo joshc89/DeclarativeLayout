@@ -24,14 +24,14 @@ open class FittingFlowLayout: UICollectionViewFlowLayout {
      
      So 16:9 => ratio = 0.5625
     */
-    var heightRatio: CGFloat = 1.0 {
+    open var heightRatio: CGFloat = 1.0 {
         didSet {
             invalidateLayout()
         }
     }
     
     /// The size used to compute the fitting size for the cells in `fittingSize(for:)`. The exact number of cells that can fit in the collection view is calculated using this size, then rounded to produce the actual cell count. The exact cell size is therefore not guarenteed to equal this size.
-    var targetSize: CGFloat = 185.0 {
+    open var targetSize: CGFloat = 185.0 {
         didSet {
             invalidateLayout()
         }
@@ -44,7 +44,7 @@ open class FittingFlowLayout: UICollectionViewFlowLayout {
     
      - returns: The number of columns that closest fits that when using the `targetSize`.
     */
-    func columnCount(for totalSpace: CGFloat) -> Int {
+    open func columnCount(for totalSpace: CGFloat) -> Int {
         
         let inset: CGFloat
         
@@ -76,11 +76,23 @@ open class FittingFlowLayout: UICollectionViewFlowLayout {
      - returns: Either the `height` or `width` for the `itemSize` that will result in fixed spacing and margins given the `scrollDirection` being `.horizontal` or `.vertical` respectively.
      
     */
-    func fittingSize(for totalSpace: CGFloat) -> CGFloat {
+    open func fittingSize(for totalSpace: CGFloat) -> CGFloat {
         
         let count = columnCount(for: totalSpace)
         
         return (totalSpace - sectionInset.left - sectionInset.right - CGFloat(count - 1) *  minimumInteritemSpacing) / CGFloat(count)
+    }
+    
+    open func itemSize(for totalSpace: CGFloat) -> CGSize {
+        
+        switch scrollDirection {
+        case .horizontal:
+            let height = fittingSize(for: totalSpace)
+            return CGSize(width: height / heightRatio, height: height)
+        case .vertical:
+            let width = fittingSize(for: totalSpace)
+            return CGSize(width: width, height: width * heightRatio)
+        }
     }
     
     /// Calculates the `itemSize` based on the `bounds` of `collectionView`.
@@ -89,14 +101,7 @@ open class FittingFlowLayout: UICollectionViewFlowLayout {
         
         guard let cv = collectionView else { return }
         
-        switch scrollDirection {
-        case .horizontal:
-            let height = fittingSize(for: cv.bounds.size.height)
-            self.itemSize = CGSize(width: height / heightRatio, height: height)
-        case .vertical:
-            let width = fittingSize(for: cv.bounds.size.width)
-            self.itemSize = CGSize(width: width, height: width * heightRatio)
-        }
+        self.itemSize = itemSize(for: cv.bounds.size.width)
     }
     
     /// Triggers invalidation if and only if the dimension against the `scrollDirection` will change.
@@ -104,12 +109,20 @@ open class FittingFlowLayout: UICollectionViewFlowLayout {
         
         guard let cv = collectionView else { return false }
         
+        let invalidated:Bool
         switch scrollDirection {
         case .horizontal:
-            return newBounds.size.height != cv.bounds.size.height
+            invalidated = newBounds.size.height != cv.bounds.size.height
         case .vertical:
-            return newBounds.size.width != cv.bounds.size.width
+            invalidated = newBounds.size.width != cv.bounds.size.width
         }
+        
+        if invalidated {
+            self.itemSize = itemSize(for: newBounds.size.width)
+            self.invalidateLayout()
+        }
+        
+        return invalidated
     }
 }
 
