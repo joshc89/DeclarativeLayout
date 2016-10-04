@@ -62,6 +62,7 @@
 		D636E2051D905D950026A69D /* TableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D636E2011D905D950026A69D /* TableManager.swift */; };
 		D64E92981D8C0487009FB28A /* AsyncModelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64E92971D8C0487009FB28A /* AsyncModelsViewController.swift */; };
 		D64E929A1D8C0520009FB28A /* LoadingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64E92991D8C0520009FB28A /* LoadingLayout.swift */; };
+		D6683E481DA38C4000286DD9 /* BaseLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6683E471DA38C4000286DD9 /* BaseLayout.swift */; };
 		D66EA78E1D8A8D2500FF66AA /* UIStackView+DeclarativeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66EA78D1D8A8D2500FF66AA /* UIStackView+DeclarativeLayout.swift */; };
 		D6BE07291D8B0934002AD3AA /* AnyCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE07281D8B0934002AD3AA /* AnyCollection.swift */; };
 		D6BE072B1D8B1853002AD3AA /* CollectionModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE072A1D8B1853002AD3AA /* CollectionModelTests.swift */; };
@@ -182,6 +183,7 @@
 		D636E2011D905D950026A69D /* TableManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableManager.swift; sourceTree = "<group>"; };
 		D64E92971D8C0487009FB28A /* AsyncModelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncModelsViewController.swift; sourceTree = "<group>"; };
 		D64E92991D8C0520009FB28A /* LoadingLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingLayout.swift; sourceTree = "<group>"; };
+		D6683E471DA38C4000286DD9 /* BaseLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseLayout.swift; path = "Example Layouts/BaseLayout.swift"; sourceTree = "<group>"; };
 		D66EA78D1D8A8D2500FF66AA /* UIStackView+DeclarativeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView+DeclarativeLayout.swift"; path = "Extensions/UIStackView+DeclarativeLayout.swift"; sourceTree = "<group>"; };
 		D6BE07281D8B0934002AD3AA /* AnyCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyCollection.swift; path = Collections/AnyCollection.swift; sourceTree = "<group>"; };
 		D6BE072A1D8B1853002AD3AA /* CollectionModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionModelTests.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				D6CEF3041D8FCE0B00DA6763 /* OverlayLayout.swift */,
 				D6E140681D8FD1A200928D16 /* RatioLayout.swift */,
 				D64E92991D8C0520009FB28A /* LoadingLayout.swift */,
+				D6683E471DA38C4000286DD9 /* BaseLayout.swift */,
 			);
 			name = "Example Layouts";
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				A59A05DC1D3937CA00E6B652 /* MaxWidthLayout.swift in Sources */,
 				D636E1FA1D905D8B0026A69D /* CollectionLayout.swift in Sources */,
 				D636E2041D905D950026A69D /* DifferentiableTableManager.swift in Sources */,
+				D6683E481DA38C4000286DD9 /* BaseLayout.swift in Sources */,
 				A5A8A5191D57A6D1009A0B48 /* ArrayCollection.swift in Sources */,
 				A59A05D41D3914F700E6B652 /* InfoLayout.swift in Sources */,
 				A510C7B01D607316004E5F21 /* Array+DifferentiableCollectionModel.swift in Sources */,

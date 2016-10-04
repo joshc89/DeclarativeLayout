@@ -8,55 +8,128 @@
 
 import Foundation
 
-enum LoadingState<Value> {
+public enum LoadingState<Value> {
     case unloaded
-    case loading
+    case loading(Double)
     case loaded(Value)
     case errored(Error)
 }
 
-let TotalLayout: Layout = {
 
-    let unloaded = InfoLayout(message: "Tap to load", image: #imageLiteral(resourceName: "swift"))
-    let error = InfoLayout(message: "broken", image: #imageLiteral(resourceName: "ic_warning"))
-    let loading = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-    let loaded = UIView() // table / collection / detail view
-    loading.color = .darkGray
+public protocol Populating {
     
-    let overlays = OverlayLayout(children: [
-        loaded,
-        CenterLayout(child: unloaded),
-        CenterLayout(child: loading),
-        CenterLayout(child: error)
-        ])
+    associatedtype Value
     
-    let view = UIView()
-    view.add(layout: overlays)
-    NSLayoutConstraint.activate(overlays.boundary.constraintsAligningEdges(to: view))
-    
-    // This type of syntax looks nice but violates the idea that a Layout is self contained
-//    view.add(layout: CenteredLayout(child: unloaded, on: view.layoutMarginsGuide))
-//    view.add(layout: CenteredLayout(child: loading, on: view.layoutMarginsGuide))
-//    view.add(layout: OverlayedLayout(child: loaded, on: view))
-//    view.add(layout: CenteredLayout(child: error, on: view.layoutMarginsGuide))
-    
-    view.add(layout: unloaded)
-    view.add(layout: loading)
-    view.add(layout: loaded)
-    view.add(layout: error)
-    
-    let all:[[NSLayoutConstraint]] = [
-        unloaded.boundary.constraintsCentering(on: view.layoutMarginsGuide),
-        loading.boundary.constraintsCentering(on: view.layoutMarginsGuide),
-        loaded.boundary.constraintsAligningEdges(to: view),
-        error.boundary.constraintsCentering(on: view.layoutMarginsGuide)
-    ]
-    
-    NSLayoutConstraint.activate(all.reduce([], +))
-    
-    return view
-    
-}()
+    func populate(with: Value)
+}
 
-// The below could be useful but offer little over using constraintsCentering(on:), constraintsAligningEdges(to:)
+public protocol Sizing: Populating {
+    
+    static func fittingSize(for value: Value?, constrainedTo width: CGFloat) -> CGSize
+}
 
+open class PopulatingLayout<Value>: BaseLayout, Populating {
+    
+    private let populator: (Value) -> ()
+    
+    public init<Type: Populating & Layout>(layout: Type) where Type.Value == Value {
+        
+        populator = layout.populate(with:)
+        
+        super.init(boundary: layout.boundary,
+                   elements: layout.elements,
+                   constraints: layout.constraints)
+    }
+    
+    public func populate(with: Value) {
+        populator(with)
+    }
+}
+
+open class EmptyLoadingLayout: BaseLayout {
+    
+    public let unloaded: Layout
+    public let loading: Layout
+    public let errored: PopulatingLayout<Error>
+    
+    public let stack: UIStackView
+    
+    open var state: LoadingState<Void> = .unloaded {
+        didSet {
+            
+            stack.arrangedSubviews.forEach { $0.isHidden = true }
+            
+            switch state {
+            case .unloaded:
+                
+                stack.arrangedSubviews[0].isHidden = false
+                
+            case .loading:
+                stack.arrangedSubviews[1].isHidden = false
+            case .errored(let e):
+                errored.populate(with: e)
+                stack.arrangedSubviews[2].isHidden = false
+            case .loaded:
+                break
+            }
+        }
+    }
+    
+    public init(unloaded: Layout, loading: Layout, errored: PopulatingLayout<Error>) {
+        
+        self.unloaded = unloaded
+        self.loading = loading
+        self.errored = errored
+        
+        stack = UIStackView(arrangedLayouts: [unloaded, loading, errored])
+        stack.arrangedSubviews[1...2].forEach { $0.isHidden = true }
+        
+        super.init(view: stack)
+    }
+}
+
+/// `Layout` that shows a single child based on a `LoadingState`. This can be subclassed to given a layout with consistent children throughout an app and be used to easily show loading progress across multiple views.
+open class LoadingLayout<Value>: BaseLayout {
+    
+    public let unloaded: Layout
+    public let loading: Layout
+    public let errored: PopulatingLayout<Error>
+    public let loaded: PopulatingLayout<Value>
+    
+    public let stack: UIStackView
+    
+    open var state: LoadingState<Value> = .unloaded {
+        didSet {
+            
+            stack.arrangedSubviews.forEach { $0.isHidden = true }
+            
+            switch state {
+            case .unloaded:
+                
+                stack.arrangedSubviews[0].isHidden = false
+                
+            case .loading:
+                stack.arrangedSubviews[1].isHidden = false
+            case .errored(let e):
+                errored.populate(with: e)
+                stack.arrangedSubviews[2].isHidden = false
+            case .loaded(let value):
+                loaded.populate(with: value)
+                stack.arrangedSubviews[3].isHidden = false
+            }
+        }
+    }
+    
+    public init(unloaded: Layout, loading: Layout, errored: PopulatingLayout<Error>, loaded: PopulatingLayout<Value>) {
+        
+        self.unloaded = unloaded
+        self.loading = loading
+        self.errored = errored
+        self.loaded = loaded
+        
+        stack = UIStackView(arrangedLayouts: [unloaded, loading, errored, loaded])
+        stack.arrangedSubviews[1...3].forEach { $0.isHidden = true }
+        
+        super.init(view: stack)
+    }
+}

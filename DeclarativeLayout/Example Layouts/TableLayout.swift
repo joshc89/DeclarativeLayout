@@ -9,7 +9,7 @@
 import UIKit
 
 /// Simple layout that includes a table populated by a `TableManager`.
-public class TableLayout<CollectionType: CollectionModel>: Layout {
+public class TableLayout<CollectionType: CollectionModel>: BaseLayout {
     
     // MARK: Properties
     
@@ -26,29 +26,7 @@ public class TableLayout<CollectionType: CollectionModel>: Layout {
     /// Declarative initialiser of a table and its data source.
     public init(dataSource: TableManager<CollectionType>) {
         self.manager = dataSource
-    }
-    
-    // MARK: Layout Conformance
-    
-    /**
-     
-     `Layout` conformance.
-     
-     - returns: `tableView`.
-     
-    */
-    public var boundary: AnchoredObject {
-        return tableView
-    }
-    
-    /**
-     
-     `Layout` conformance.
-     
-     - returns: An array of just `tableView`.
-     
-     */
-    public var elements: [Layout] {
-        return [tableView]
+        
+        super.init(view: dataSource.tableView)
     }
 }

@@ -15,7 +15,7 @@ import UIKit
  *include image*
  
  */
-public struct InfoLayout: Layout {
+open class InfoLayout: Layout {
     
     static func defaultTextLabel() -> UILabel {
         let label = UILabel()
@@ -97,7 +97,7 @@ public struct InfoLayout: Layout {
      - parameter color: The `color` to apply to this info layout. Default value is 50% opacity black.
      
     */
-    public init(message:String?,
+    public convenience init(message:String?,
                 image:UIImage?,
                 maxWidth:CGFloat? = 280.0,
                 color: UIColor = UIColor.black.withAlphaComponent(0.5)) {

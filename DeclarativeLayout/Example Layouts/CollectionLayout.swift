@@ -9,7 +9,7 @@
 import UIKit
 
 /// Simple layout that includes a `UICollectionView` populated by a `CollectionManager`.
-public class CollectionLayout<CollectionType: CollectionModel>: Layout {
+open class CollectionLayout<CollectionType: CollectionModel>: BaseLayout {
     
     // MARK: Properties
     
@@ -26,29 +26,7 @@ public class CollectionLayout<CollectionType: CollectionModel>: Layout {
     /// Declarative initialiser of a table and its data source.
     public init(dataSource: CollectionManager<CollectionType>) {
         self.manager = dataSource
-    }
-    
-    // MARK: Layout Conformance
-    
-    /**
-     
-     `Layout` conformance.
-     
-     - returns: `collectionView`.
-     
-     */
-    public var boundary: AnchoredObject {
-        return collectionView
-    }
-    
-    /**
-     
-     `Layout` conformance.
-     
-     - returns: An array of just `collectionView`.
-     
-     */
-    public var elements: [Layout] {
-        return [collectionView]
+        
+        super.init(view: dataSource.collectionView)
     }
 }

@@ -15,7 +15,7 @@ import UIKit
  *include image*
  
  */
-open class ErrorLayout: Layout {
+open class ErrorLayout: BaseLayout {
     
     static func defaultLabel() -> UILabel {
         let label = UILabel()
@@ -74,7 +74,7 @@ open class ErrorLayout: Layout {
     /// The stack containing `label` and `iconView`
     public let errorStack: UIStackView
     
-    /// The stack containing `child` and `errorStack`.
+    /// The stack containing `child` and `errorStack`. This defines the `boundary` and `elements` of this `Layout`.
     public let stack: UIStackView
     
     /// The sub layout that this layout is adding an error to.
@@ -104,19 +104,6 @@ open class ErrorLayout: Layout {
         stack.axis = .vertical
         stack.spacing = 8.0
         
-        UIView.useInAutoLayout([label, iconView, errorStack])
+        super.init(view: stack)
     }
-    
-    // MARK: Layout Conformance
-    
-    /// `stack` is the only element needed to add this to the hierarchy
-    public var elements: [Layout] {
-        return [stack]
-    }
-    
-    /// `stack` defines the boundary of this layout.
-    public var boundary: AnchoredObject {
-        return stack
-    }
-    
 }

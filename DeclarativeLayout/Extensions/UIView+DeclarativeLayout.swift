@@ -64,6 +64,15 @@ extension UIView: AnchoredObject {
 // MARK: Convenience Methods
 public extension UIView {
     
+    public convenience init(layout: Layout, edge: Edge = .bounds) {
+        
+        self.init()
+        
+        add(layout: layout)
+        let constrs = layout.boundary.constraintsAligningEdges(to: anchorsForEdge(edge))
+        NSLayoutConstraint.activate(constrs)
+    }
+    
     /// Sets all of the given views' `translatesAutoresizingMaskIntoConstraints` to `false`. When creating views programmatically this is set to `true` by default, which is inconvenient when creating UI programmatically using NSLayoutConstraints.
     public class func useInAutoLayout(_ views:[UIView]) {
         views.forEach({ $0.translatesAutoresizingMaskIntoConstraints = false })

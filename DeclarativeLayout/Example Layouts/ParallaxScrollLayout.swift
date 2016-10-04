@@ -52,7 +52,7 @@ public final class ParallaxScrollLayout: NSObject, Layout {
         }
     }
     
-    /// Default initialiser setting the two `Layout` properties. Adds `self` as an observer to the `contentOffset` of `scrollView`. This allows other objects to be the UIScrollViewDelegate.
+    /// Default initialiser setting the two `Layout` properties. Adds `self` as an observer to the `contentOffset` of `scrollView`. This allows other objects to be the `UIScrollViewDelegate`.
     public init(background: Layout, foreground: Layout) {
         
         self.background = background
@@ -90,9 +90,9 @@ public final class ParallaxScrollLayout: NSObject, Layout {
         let fTrailing = foreground.boundary.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
         let fBottom = foreground.boundary.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         
-        let internalConstraints = [gTop, gBottom, gLeading, gTrailing, gHeight, bLeading, bTrailing, connectingConstraint, fLeading, fTrailing, fBottom].flatMap { $0 }
-        
-        NSLayoutConstraint.activate(internalConstraints)
+        boundary = scrollView
+        elements = [scrollView]
+        constraints = [gTop, gBottom, gLeading, gTrailing, gHeight, bLeading, bTrailing, connectingConstraint, fLeading, fTrailing, fBottom]
         
         super.init()
         
@@ -114,7 +114,6 @@ public final class ParallaxScrollLayout: NSObject, Layout {
             didScroll(view: sv)
         }
     }
-    
     
     /// Implements the parallax scroll view by adjusting the constraint aligning the `background` top with `boundary`.
     public func didScroll(view:UIScrollView) {
@@ -141,13 +140,12 @@ public final class ParallaxScrollLayout: NSObject, Layout {
     
     // MARK: Layout Conformance
     
+    /// A UILayoutGuide aligning the `background` and `scrollView`.
+    public let boundary: AnchoredObject
+    
     /// - returns: The containing `boundary` UILayoutGuide, `background` and `scrollView`.
-    public var elements: [Layout] {
-        return [scrollView]
-    }
+    public let elements: [Layout]
     
     /// A UILayoutGuide aligning the `background` and `scrollView`.
-    public var boundary: AnchoredObject {
-        return scrollView
-    }
+    public let constraints: [NSLayoutConstraint]
 }
