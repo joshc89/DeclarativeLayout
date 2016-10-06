@@ -15,6 +15,23 @@ public enum LoadingState<Value> {
     case errored(Error)
 }
 
+extension LoadingState where Value: Equatable {
+    
+    static func ==(s1: LoadingState, s2: LoadingState) -> Bool {
+        switch (s1, s2) {
+        case (.unloaded, .unloaded):
+            return true
+        case let (.loading(p1), .loading(p2)):
+            return p1 == p2
+        case let (.loaded(v1), .loaded(v2)):
+            return v1 == v2
+        case let (.errored(e1), .errored(e2)):
+            return e1.localizedDescription == e2.localizedDescription
+        default:
+            return false
+        }
+    }
+}
 
 public protocol Populating {
     

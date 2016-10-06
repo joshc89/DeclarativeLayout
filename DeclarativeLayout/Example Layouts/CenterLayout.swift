@@ -9,7 +9,7 @@
 import Foundation
 
 /// Layout that centers a child `Layout` within a `UILayoutGuide`.
-public struct CenterLayout: Layout {
+open class CenterLayout: Layout {
     
     /// The `Layout` to be centered within a `boundary` `UILayoutGuide`.
     public let child: Layout
