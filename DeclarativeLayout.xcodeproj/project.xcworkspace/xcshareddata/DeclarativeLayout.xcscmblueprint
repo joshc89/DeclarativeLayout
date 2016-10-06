@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C6C1D140A791B6806DCF456EB4EBFEA05495D6D4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C6C1D140A791B6806DCF456EB4EBFEA05495D6D4" : 9223372036854775807,
+    "902705CAAACE06AEEF8A061AA17226C57C36A4D5" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "94BC6B4C-E64D-432F-83E6-117EA97A6BD3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C6C1D140A791B6806DCF456EB4EBFEA05495D6D4" : "DeclarativeLayout\/",
+    "902705CAAACE06AEEF8A061AA17226C57C36A4D5" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DeclarativeLayout",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DeclarativeLayout.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/bjss\/BJSS-Events-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "902705CAAACE06AEEF8A061AA17226C57C36A4D5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/joshc89\/DeclarativeLayout.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C6C1D140A791B6806DCF456EB4EBFEA05495D6D4"
+    }
+  ]
+}

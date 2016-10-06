@@ -17,18 +17,22 @@ public extension UIStackView {
      Being able to stack generic `Layout`s allows for greater reuse and composition of `Layout` objects. 
      
      - parameter: The `Layout` objects to stack.
+     
     */
     public convenience init(arrangedLayouts:[Layout]) {
         
         let views = arrangedLayouts.map { (layout) -> UIView in
             
-            if let view = layout.boundary as? UIView {
+            if let view = layout.boundary as? UIView, layout.elements.count <= 1 {
                 return view
             } else {
                 let container = UIView()
-                container.backgroundColor = UIColor.clear
+                container.backgroundColor = .clear
                 container.translatesAutoresizingMaskIntoConstraints = false
                 container.add(layout: layout)
+                
+                let edgeConstrs = layout.boundary.constraintsAligningEdges(to: container)
+                NSLayoutConstraint.activate(edgeConstrs)
                 
                 return container
             }

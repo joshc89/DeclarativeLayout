@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         view.add(layout: titleLayout)
         
         // centered title
-        let centerConstraints = titleLayout.boundary.constraintsCenteringOn(view.layoutMarginsGuide, xBuffer: 0, yBuffer: 0)
+        let centerConstraints = titleLayout.boundary.constraintsCentering(on: view.layoutMarginsGuide)
         view.addConstraints(centerConstraints)
         
         /*
@@ -35,7 +35,6 @@ class ViewController: UIViewController {
          view.addConstraints([edgeConstraints[1], edgeConstraints[3], topConstraint])
          */
     }
-
 }
 
 /**
@@ -61,7 +60,7 @@ class TitledViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         view.add(layout: titleLayout)
         
         /*
@@ -72,7 +71,7 @@ class TitledViewController: UIViewController {
         
         
         // top positioned title
-        let topConstraint = titleLayout.boundary.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor, constant: 8)
+        let topConstraint = titleLayout.boundary.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 8)
         let edgeConstraints = titleLayout.boundary.constraintsAligningEdges(to: view.layoutMarginsGuide)
         view.addConstraints([edgeConstraints[1], edgeConstraints[3], topConstraint])
     }

@@ -36,11 +36,16 @@ extension UIView: AnchoredObject {
      
      Adds each element to the hierarchy, calling `useInAutoLayout()` then activates the constraints for that `Layout`.
      
-     - returns: The constraints that were generated. If you want to dynamically de-activate and re-activate these constraints you should hold on to these.
+     - returns: The constraints that were generated. If you want to dynamically de-activate and re-activate these constraints you should hold on to these. They are a `discardableResult`.
     */
+    @discardableResult
     public func add(layout: Layout) -> [NSLayoutConstraint] {
         
         layout.useInAutoLayout()
+        
+        if let obj = layout as? AnchoredObject {
+            add(anchoredObject: obj)
+        }
         
         for element in layout.elements {
             if let obj = layout as? AnchoredObject {
@@ -50,15 +55,23 @@ extension UIView: AnchoredObject {
             }
         }
         
-        let toAdd = layout.generateConstraints()
+        let toAdd = layout.combinedConstraints()
         NSLayoutConstraint.activate(toAdd)
         return toAdd
     }
-
 }
 
 // MARK: Convenience Methods
 public extension UIView {
+    
+    public convenience init(layout: Layout, edge: Edge = .bounds) {
+        
+        self.init()
+        
+        add(layout: layout)
+        let constrs = layout.boundary.constraintsAligningEdges(to: anchorsForEdge(edge))
+        NSLayoutConstraint.activate(constrs)
+    }
     
     /// Sets all of the given views' `translatesAutoresizingMaskIntoConstraints` to `false`. When creating views programmatically this is set to `true` by default, which is inconvenient when creating UI programmatically using NSLayoutConstraints.
     public class func useInAutoLayout(_ views:[UIView]) {
@@ -77,11 +90,6 @@ extension UIView: Layout {
     
     /// The only element is `self` as this view represents the entire layout.
     public var elements: [Layout] {
-        return [self]
-    }
-    
-    /// There are no internal constraints needed to configure this view.
-    public func generateConstraints() -> [NSLayoutConstraint] {
         return []
     }
 }

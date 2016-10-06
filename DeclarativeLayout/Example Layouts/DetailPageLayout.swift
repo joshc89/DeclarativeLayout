@@ -34,6 +34,10 @@ public extension ParallaxScrollLayout {
         
         let titleLayout = TitledLayout(title: title, subtitle: subtitle)
         
+        if title?.isEmpty ?? true && subtitle?.isEmpty ?? true {
+            titleLayout.textStack.isHidden = true
+        }
+        
         let scrollContent = UIStackView(arrangedLayouts: [titleLayout, contentLayout])
         scrollContent.axis = .vertical
         scrollContent.spacing = 16.0
@@ -50,6 +54,6 @@ public extension ParallaxScrollLayout {
         NSLayoutConstraint.activate(contentConstraints)
         
         // create the layout
-        self.init(backgroundLayout: backgroundLayout, foregroundLayout: scrollContentView)
+        self.init(background: backgroundLayout, foreground: scrollContentView)
     }
 }

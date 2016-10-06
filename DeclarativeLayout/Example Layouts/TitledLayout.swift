@@ -17,12 +17,12 @@ import UIKit
  The title and subtitle label have fonts `UIFontTextStyleHeadline` and `UIFontTextStyleSubheadline` respectively. They are spaced 8.0 apart. This can be configured by accessing the `textStack` property.
  
  */
-public struct TitledLayout: Layout {
+public class TitledLayout: BaseLayout {
     
-    /// The label to show the tile in this layout. Font is set to `UIFontTextStyleHeadline`.
+    /// The label to show the tile in this layout. Font is set to `UIFontTextStyle.headline`.
     public let titleLabel = UILabel()
     
-    /// The label to show the subtitle in this layout. Font is set to `UIFontTextStyleSubheadline`.
+    /// The label to show the subtitle in this layout. Font is set to `UIFontTextStyle.subheadline`.
     public let subtitleLabel = UILabel()
     
     /// `UIStackView` containing the two labels.
@@ -57,17 +57,7 @@ public struct TitledLayout: Layout {
         textStack = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
         textStack.axis = .vertical
         textStack.spacing = 8.0
-    }
-
-    // MARK: Layout Conformance
-    
-    /// The `textStack` is the only `Layout` object that needs to be added to the hierarchy.
-    public var elements: [Layout] {
-        return [textStack]
-    }
-    
-    /// The `textStack` defines the enclosing area of this layout.
-    public var boundary: AnchoredObject {
-        return textStack
+        
+        super.init(view: textStack)
     }
 }
