@@ -63,7 +63,7 @@ open class PopulatingLayout<Value>: BaseLayout, Populating {
     }
 }
 
-open class EmptyLoadingLayout: BaseLayout {
+open class EmptyLoadingLayout: BaseLayout, Populating {
     
     public let unloaded: Layout
     public let loading: Layout
@@ -103,10 +103,14 @@ open class EmptyLoadingLayout: BaseLayout {
         
         super.init(view: stack)
     }
+    
+    public func populate(with: LoadingState<Void>) {
+        state = with
+    }
 }
 
 /// `Layout` that shows a single child based on a `LoadingState`. This can be subclassed to given a layout with consistent children throughout an app and be used to easily show loading progress across multiple views.
-open class LoadingLayout<Value>: BaseLayout {
+open class LoadingLayout<Value>: BaseLayout, Populating {
     
     public let unloaded: Layout
     public let loading: Layout
@@ -148,5 +152,9 @@ open class LoadingLayout<Value>: BaseLayout {
         stack.arrangedSubviews[1...3].forEach { $0.isHidden = true }
         
         super.init(view: stack)
+    }
+    
+    public func populate(with: LoadingState<Value>) {
+        state = with
     }
 }
