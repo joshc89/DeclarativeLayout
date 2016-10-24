@@ -74,7 +74,10 @@ open class EmptyLoadingLayout: BaseLayout, Populating {
     open var state: LoadingState<Void> = .unloaded {
         didSet {
             
-            stack.arrangedSubviews.forEach { $0.isHidden = true }
+            stack.arrangedSubviews.forEach {
+                ($0 as? UIActivityIndicatorView)?.stopAnimating()
+                $0.isHidden = true
+            }
             
             switch state {
             case .unloaded:
@@ -83,6 +86,7 @@ open class EmptyLoadingLayout: BaseLayout, Populating {
                 
             case .loading:
                 stack.arrangedSubviews[1].isHidden = false
+                (stack.arrangedSubviews[1] as? UIActivityIndicatorView)?.startAnimating()
             case .errored(let e):
                 errored.populate(with: e)
                 stack.arrangedSubviews[2].isHidden = false
@@ -122,7 +126,10 @@ open class LoadingLayout<Value>: BaseLayout, Populating {
     open var state: LoadingState<Value> = .unloaded {
         didSet {
             
-            stack.arrangedSubviews.forEach { $0.isHidden = true }
+            stack.arrangedSubviews.forEach {
+                ($0 as? UIActivityIndicatorView)?.stopAnimating()
+                $0.isHidden = true
+            }
             
             switch state {
             case .unloaded:
@@ -131,6 +138,7 @@ open class LoadingLayout<Value>: BaseLayout, Populating {
                 
             case .loading:
                 stack.arrangedSubviews[1].isHidden = false
+                (stack.arrangedSubviews[1] as? UIActivityIndicatorView)?.startAnimating()
             case .errored(let e):
                 errored.populate(with: e)
                 stack.arrangedSubviews[2].isHidden = false
