@@ -97,11 +97,15 @@ open class FittingFlowLayout: UICollectionViewFlowLayout {
     
     /// Calculates the `itemSize` based on the `bounds` of `collectionView`.
     open override func prepare() {
-        super.prepare()
         
-        guard let cv = collectionView else { return }
+        
+        guard let cv = collectionView else {
+            super.prepare()
+            return
+        }
         
         self.itemSize = itemSize(for: cv.bounds.size.width)
+        super.prepare()
     }
     
     /// Triggers invalidation if and only if the dimension against the `scrollDirection` will change.
