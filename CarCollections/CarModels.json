@@ -1,0 +1,115 @@
+ [
+  {"manufacturer": " Audi",
+  "logo_url": "",
+  "models": [{
+             "name": "A1",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "A1 Sportback",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "S1",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "A3",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "A3 Sportback",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "A3 Saloon",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "RS3",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "A5 Coupe",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "A5 Cabriolet",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "RS5 Cabriolet",
+             "base_price": "",
+             "thumbnail_url": ""}]
+  },
+  {"manufacturer": "BMW",
+  "logo_url": "",
+  "models": [{
+             "name": "1 Series",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "1 Series M135i",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "2 Series",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "M2",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "3 Series",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "3 Series Touring",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "M3",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "4 Series",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "4 Series Gran Coupe",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "M4",
+             "base_price": "",
+             "thumbnail_url": ""}]
+  },
+  {"manufacturer": "Mercedes",
+  "logo_url": "",
+  "models": [{
+             "name": "A Class",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "AMG A45",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "C Class",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "C Class Coupe",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "AMG C63",
+             "base_price": "",
+             "thumbnail_url": ""},
+             {
+             "name": "AMG C63 Estate",
+             "base_price": "",
+             "thumbnail_url": ""}]
+  }
+  ]

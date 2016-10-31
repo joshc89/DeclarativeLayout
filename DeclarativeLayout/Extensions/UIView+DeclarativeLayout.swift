@@ -22,7 +22,7 @@ extension UIView: AnchoredObject {
      
      - parameter AnchoredObject: The `UIView` or `UILayoutGuide` to add to the hierarchy. This allows for the interchangable use of the 2 types in creating a `Layout`.
     */
-    public func addAnchoredObject(anchoredObject: AnchoredObject) {
+    public func add(anchoredObject: AnchoredObject) {
         switch anchoredObject {
         case let view as UIView:
             addSubview(view)
@@ -36,32 +36,45 @@ extension UIView: AnchoredObject {
      
      Adds each element to the hierarchy, calling `useInAutoLayout()` then activates the constraints for that `Layout`.
      
-     - returns: The constraints that were generated. If you want to dynamically de-activate and re-activate these constraints you should hold on to these.
+     - returns: The constraints that were generated. If you want to dynamically de-activate and re-activate these constraints you should hold on to these. They are a `discardableResult`.
     */
-    public func addLayout(layout: Layout) -> [NSLayoutConstraint] {
+    @discardableResult
+    public func add(layout: Layout) -> [NSLayoutConstraint] {
         
         layout.useInAutoLayout()
         
+        if let obj = layout as? AnchoredObject {
+            add(anchoredObject: obj)
+        }
+        
         for element in layout.elements {
             if let obj = layout as? AnchoredObject {
-                addAnchoredObject(obj)
+                add(anchoredObject: obj)
             } else {
-                addLayout(element)
+                add(layout: element)
             }
         }
         
-        let toAdd = layout.generateConstraints()
-        NSLayoutConstraint.activateConstraints(toAdd)
+        let toAdd = layout.combinedConstraints()
+        NSLayoutConstraint.activate(toAdd)
         return toAdd
     }
-
 }
 
 // MARK: Convenience Methods
 public extension UIView {
     
+    public convenience init(layout: Layout, edge: Edge = .bounds) {
+        
+        self.init()
+        
+        add(layout: layout)
+        let constrs = layout.boundary.constraintsAligningEdges(to: anchorsForEdge(edge))
+        NSLayoutConstraint.activate(constrs)
+    }
+    
     /// Sets all of the given views' `translatesAutoresizingMaskIntoConstraints` to `false`. When creating views programmatically this is set to `true` by default, which is inconvenient when creating UI programmatically using NSLayoutConstraints.
-    public class func useInAutoLayout(views:[UIView]) {
+    public class func useInAutoLayout(_ views:[UIView]) {
         views.forEach({ $0.translatesAutoresizingMaskIntoConstraints = false })
     }
     
@@ -77,11 +90,6 @@ extension UIView: Layout {
     
     /// The only element is `self` as this view represents the entire layout.
     public var elements: [Layout] {
-        return [self]
-    }
-    
-    /// There are no internal constraints needed to configure this view.
-    public func generateConstraints() -> [NSLayoutConstraint] {
         return []
     }
 }
@@ -99,11 +107,11 @@ public extension UIView {
     */
     public enum Edge {
         /// Represents the boundary of this view.
-        case Bounds
+        case bounds
         /// Represents the `layoutMarginsGuide` of this view.
-        case LayoutMargins
+        case layoutMargins
         /// Represents the `readableContentGuide` of this view.
-        case ReadableContent
+        case readableContent
     }
     
     /**
@@ -113,14 +121,14 @@ public extension UIView {
      - parameter edge: The type of edge requested.
      - returns: either the views boundary (i.e. `self`), `layoutMarginsGuide` or `readableContentGuide`.
     */
-    public func anchorsForEdge(edge: Edge) -> AnchoredObject {
+    public func anchorsForEdge(_ edge: Edge) -> AnchoredObject {
     
         switch edge {
-        case .Bounds:
+        case .bounds:
             return self
-        case .LayoutMargins:
+        case .layoutMargins:
             return layoutMarginsGuide
-        case .ReadableContent:
+        case .readableContent:
             return readableContentGuide
         }
     

@@ -14,12 +14,6 @@ public struct InsetLayout: Layout {
     /// The `Layout` to be inset.
     public let child: Layout
     
-    /// The boundary of this layout is a `UILayoutGuide` used to provide the insets.
-    public let boundary: AnchoredObject
-    
-    /// The bounding layout guide and the child layout.
-    public let elements: [Layout]
-    
     /// The insets between the child and the containing layout guide.
     var insets: UIEdgeInsets {
         didSet {
@@ -28,15 +22,21 @@ public struct InsetLayout: Layout {
                 return
             }
             
-            insetConstraints[0].constant = insets.top
-            insetConstraints[1].constant = insets.left
-            insetConstraints[2].constant = insets.bottom
-            insetConstraints[3].constant = insets.right
+            constraints[0].constant = insets.top
+            constraints[1].constant = insets.left
+            constraints[2].constant = insets.bottom
+            constraints[3].constant = insets.right
         }
     }
     
-    /// Internal variable for storing the inset constraints between the child and the bounding layout guide so they can be updated with `insets`.
-    let insetConstraints: [NSLayoutConstraint]
+    /// The boundary of this layout is a `UILayoutGuide` used to provide the insets.
+    public let boundary: AnchoredObject
+    
+    /// The bounding layout guide and the child layout.
+    public let elements: [Layout]
+    
+    /// The constraints to inset child from the edge.
+    public let constraints: [NSLayoutConstraint]
     
     /**
      
@@ -54,11 +54,6 @@ public struct InsetLayout: Layout {
         let insetGuide = UILayoutGuide()
         boundary = insetGuide
         elements = [insetGuide, child]
-        insetConstraints = child.boundary.constraintsAligningEdgesTo(insetGuide, withInsets: insets)
-    }
-    
-    /// - returns: The constraints to inset child from the edge, plus constraints from other sub elements.
-    public func generateConstraints() -> [NSLayoutConstraint] {
-        return insetConstraints + elementConstraints()
+        constraints = child.boundary.constraintsAligningEdges(to: insetGuide, withInsets: insets)
     }
 }

@@ -15,10 +15,25 @@ import UIKit
  *include image*
  
  */
-public struct ErrorLayout: Layout {
+open class ErrorLayout: BaseLayout {
+    
+    static func defaultLabel() -> UILabel {
+        let label = UILabel()
+        
+        label.numberOfLines = 0
+        label.font = UIFont.preferredFont(forTextStyle: .caption1)
+        
+        return label
+    }
+    
+    static func defaultImageView() -> UIImageView {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }
     
     /// Internal struct used to encapsulate the objects needed to show an error.
-    public struct Error {
+    public struct ErrorObject {
         
         /// The text of the error
         public let message: String
@@ -34,24 +49,24 @@ public struct ErrorLayout: Layout {
     }
     
     /// Optional `Error` that configures the UI. When this is `nil`, `errorStack` is hidden.
-    public var error: Error? {
+    open var error: ErrorObject? {
         didSet {
             label.text = error?.message
-            label.hidden = error?.message == nil
+            label.isHidden = error?.message == nil
             
             iconView.image = error?.icon
-            iconView.hidden = error?.icon == nil
+            iconView.isHidden = error?.icon == nil
             iconWidthConstraint.constant = error?.icon?.size.width ?? 0
             
-            errorStack.hidden = error == nil
+            errorStack.isHidden = error == nil
         }
     }
     
     /// The label showing the `message` of `error`. Default font is `UIFontTextStyleCaption1`.
-    public let label = UILabel()
+    public let label: UILabel
     
     /// The image view showing the `image` of `error`. This is constrained to be the width of the image and top aligned with the label.
-    public let iconView = UIImageView()
+    public let iconView: UIImageView
     
     /// Internal variable for the width of `imageView` with priority 900, updated when `error` is set.
     let iconWidthConstraint:NSLayoutConstraint
@@ -59,7 +74,7 @@ public struct ErrorLayout: Layout {
     /// The stack containing `label` and `iconView`
     public let errorStack: UIStackView
     
-    /// The stack containing `child` and `errorStack`.
+    /// The stack containing `child` and `errorStack`. This defines the `boundary` and `elements` of this `Layout`.
     public let stack: UIStackView
     
     /// The sub layout that this layout is adding an error to.
@@ -70,37 +85,25 @@ public struct ErrorLayout: Layout {
      Default initialiser. Sets the `child` property that is supplemented with an error label and icon.
      
     */
-    public init(child: Layout) {
+    public init(child: Layout,
+                label:UILabel = ErrorLayout.defaultLabel(),
+                iconView: UIImageView = ErrorLayout.defaultImageView()) {
         
         self.child = child
-        
-        label.numberOfLines = 0
-        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
+        self.label = label
+        self.iconView = iconView
         
         errorStack = UIStackView(arrangedSubviews: [iconView, label])
         errorStack.spacing = 8.0
         
-        iconWidthConstraint = iconView.widthAnchor.constraintEqualToConstant(0)
+        iconWidthConstraint = iconView.widthAnchor.constraint(equalToConstant: 0)
         iconWidthConstraint.priority = 900
-        iconWidthConstraint.active = true
+        iconWidthConstraint.isActive = true
         
         stack = UIStackView(arrangedLayouts: [child, errorStack])
-        stack.axis = .Vertical
+        stack.axis = .vertical
         stack.spacing = 8.0
         
-        UIView.useInAutoLayout([label, iconView, errorStack])
+        super.init(view: stack)
     }
-    
-    // MARK: Layout Conformance
-    
-    /// `stack` is the only element needed to add this to the hierarchy
-    public var elements: [Layout] {
-        return [stack]
-    }
-    
-    /// `stack` defines the boundary of this layout.
-    public var boundary: AnchoredObject {
-        return stack
-    }
-    
 }

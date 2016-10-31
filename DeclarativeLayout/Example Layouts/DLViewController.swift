@@ -9,10 +9,10 @@
 import Foundation
 
 /// Convenience view controller subclass for creating a view controller with a `Layout`.
-public class DLViewController: UIViewController {
+open class DLViewController: UIViewController {
 
     /// The UI for this view controller.
-    public let layout:Layout
+    open let layout:Layout
     
     /// Internal variable set on initialisation for the inset of `layout` from the view controller's view's `layoutMargins`.
     let insets: UIEdgeInsets
@@ -33,9 +33,9 @@ public class DLViewController: UIViewController {
      - parameter backgroundColor. The background color for the view. Default value is white.
     */
     public init(layout: Layout,
-                alignmentEdge:UIView.Edge = .Bounds,
-                insets: UIEdgeInsets = UIEdgeInsetsZero,
-                backgroundColor: UIColor = UIColor.whiteColor()) {
+                alignmentEdge:UIView.Edge = .bounds,
+                insets: UIEdgeInsets = UIEdgeInsets.zero,
+                backgroundColor: UIColor = UIColor.white) {
         
         self.layout = layout
         self.insets = insets
@@ -51,16 +51,16 @@ public class DLViewController: UIViewController {
     }
     
     /// Adds `layout` constraining it to the `layoutMarginsGuide` based on the insets given in `init(layout:marginInsets:backgroundColor:)`. 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         // configure the view
         view.backgroundColor = backgroundColor
         
         // create & constrain the hierarchy
-        view.addLayout(layout)
-        let insetConstraints = layout.boundary.constraintsAligningEdgesTo(view.anchorsForEdge(alignmentEdge), withInsets: insets)
-        NSLayoutConstraint.activateConstraints(insetConstraints)
+        view.add(layout: layout)
+        let insetConstraints = layout.boundary.constraintsAligningEdges(to: view.anchorsForEdge(alignmentEdge), withInsets: insets)
+        NSLayoutConstraint.activate(insetConstraints)
     }
     
 }

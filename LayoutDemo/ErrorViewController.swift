@@ -31,24 +31,24 @@ class ErrorViewController: UIViewController, UITextFieldDelegate {
         let title = TitledLayout(title: "Email Address", subtitle: "Please enter an email address so we can keep in touch:")
         
         let titleStack = UIStackView(arrangedLayouts: [title, emailTextField])
-        titleStack.axis = .Vertical
+        titleStack.axis = .vertical
         titleStack.spacing = 8.0
         
         errorLayout = ErrorLayout(child: titleStack)
-        errorLayout.label.textColor = UIColor.redColor()
-        errorLayout.iconView.tintColor = UIColor.redColor()
+        errorLayout.label.textColor = UIColor.red
+        errorLayout.iconView.tintColor = UIColor.red
         
         // complete initialisation
         super.init(nibName: nil, bundle: nil)
         
         // configure the textfield
-        emailTextField.borderStyle = .RoundedRect
-        emailTextField.autocorrectionType = .No
-        emailTextField.autocapitalizationType = .None
-        emailTextField.keyboardType = .EmailAddress
-        emailTextField.returnKeyType = .Done
+        emailTextField.borderStyle = .roundedRect
+        emailTextField.autocorrectionType = .no
+        emailTextField.autocapitalizationType = .none
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.returnKeyType = .done
         emailTextField.delegate = self
-        emailTextField.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        emailTextField.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,30 +58,30 @@ class ErrorViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.whiteColor()
-        view.addLayout(errorLayout)
+        view.backgroundColor = UIColor.white
+        view.add(layout: errorLayout)
         
         // set up the layout constraints
-        let topConstraint = errorLayout.boundary.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor, constant: 8)
-        let edgeConstraints = errorLayout.boundary.constraintsAligningEdgesTo(view.layoutMarginsGuide)
+        let topConstraint = errorLayout.boundary.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 8)
+        let edgeConstraints = errorLayout.boundary.constraintsAligningEdges(to: view.layoutMarginsGuide)
         view.addConstraints([edgeConstraints[1], edgeConstraints[3], topConstraint])
     }
     
     
     // MARK: UITextFieldDelegate Methods
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
         
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         
         let predicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         
-        if predicate.evaluateWithObject(textField.text) {
+        if predicate.evaluate(with: textField.text) {
             errorLayout.error = nil
         } else {
             errorLayout.error = ErrorLayout.Error(message: "Invalid email address entered.", icon: UIImage(named: "ic_warning"))

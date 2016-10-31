@@ -21,11 +21,6 @@ extension UILayoutGuide: Layout {
     
     /// The only element is `self` as this layout guide represents the entire layout.
     public var elements: [Layout] {
-        return [self]
-    }
-    
-    /// There are no internal constraints needed to configure this layout guide.
-    public func generateConstraints() -> [NSLayoutConstraint] {
         return []
     }
 }

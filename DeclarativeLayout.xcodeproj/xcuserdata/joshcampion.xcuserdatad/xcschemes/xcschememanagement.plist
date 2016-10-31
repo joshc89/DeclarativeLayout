@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CarCollections.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>CollectionDemo.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>DeclarativeLayout.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -22,6 +32,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>A510C7B41D607464004E5F21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A510C7CA1D607477004E5F21</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A539F83D1D3B6B2A0069A2B6</key>
 		<dict>
 			<key>primary</key>
