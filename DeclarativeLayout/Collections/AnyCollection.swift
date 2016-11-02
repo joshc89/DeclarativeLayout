@@ -9,7 +9,7 @@
 import Foundation
 
 /// Type erased conformance to `CollectionModel`
-public class AnyCollection<ElementType>: CollectionModel {
+public class AnyCollectionModel<ElementType>: CollectionModel {
     
     private let _numberOfSections: () -> Int
     private let _numberOfItems: (Int) -> Int
@@ -53,6 +53,11 @@ public class AnyCollection<ElementType>: CollectionModel {
     /// `CollectionModel` conformance
     public func indextitle(forSection: Int) -> String? {
         return _indexTitle(forSection)
+    }
+    
+    public static func empty<T>() -> AnyCollectionModel<T> {
+        let emptyArray = ArrayCollection(sections: [ArraySection<T>]())
+        return AnyCollectionModel<T>(collection: emptyArray)
     }
 }
 

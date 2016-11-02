@@ -47,9 +47,17 @@ public protocol CollectionModel {
     /// Should return an optional index title for this section.
     func indexTitle(forSection: Int) -> String?
     
+    
+    var isEmpty: Bool { get }
 }
 
 public extension CollectionModel {
+    
+    var isEmpty: Bool {
+        let totalCount: Int = (0..<numberOfSections()).map { self.numberOfItems(in: $0) }
+            .reduce(0, +)
+        return totalCount == 0
+    }
     
     /// Default implementation returning `nil` for the section title. Specific implementatsion can provide a value if appropriate.
     public func title(forSection: Int) -> String? {
